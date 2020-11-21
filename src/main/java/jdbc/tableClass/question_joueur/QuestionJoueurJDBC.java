@@ -17,7 +17,7 @@ public class QuestionJoueurJDBC {
     Connection con = null;
 
     /**
-     * Method   : QuestionJDBC
+     * Method   : QuestionJoueurJDBC
      * Params   : None
      * Return   : None
      * Def      : Init method
@@ -45,7 +45,7 @@ public class QuestionJoueurJDBC {
      * Params   : None
      * Return   : List<QuestionJoueur>
      *
-     * Def      : Method qui permet de retourner toutes les Questions de la BDD
+     * Def      : Method qui permet de retourner toutes les QuestionsJoueurs de la BDD
      *
      * @return
      * @throws SQLException
@@ -79,7 +79,7 @@ public class QuestionJoueurJDBC {
      * Params   : questionjoueur(QuestionJoueur)
      * Return   : Boolean
      *
-     * Def      : Method qui permet d'ajouter une question dans la BDD
+     * Def      : Method qui permet d'ajouter une QuestionsJoueurs dans la BDD
      *
      * @param questionjoueur
      * @return
@@ -95,7 +95,7 @@ public class QuestionJoueurJDBC {
      * Params   : questionjoueur(QuestionJoueur)
      * Return   : Boolean
      *
-     * Def      : Method qui permet de mettre à jour une qestion dans la BDD
+     * Def      : Method qui permet de mettre à jour une QuestionsJoueurs dans la BDD
      *
      * @param questionjoueur
      * @return
@@ -111,7 +111,7 @@ public class QuestionJoueurJDBC {
      * Params   : questionJoueur(QuestionJoueur)
      * Return   : Boolean
      *
-     * Def      : Method qui permet de supprimer un joueur dans la BDD
+     * Def      : Method qui permet de supprimer une QuestionsJoueurs dans la BDD
      *
      * @param questionJoueur
      * @return
