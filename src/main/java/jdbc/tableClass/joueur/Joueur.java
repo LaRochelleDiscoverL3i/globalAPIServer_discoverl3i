@@ -44,6 +44,7 @@ public class Joueur  implements TableInterface {
      * @return
      * @throws SQLException
      */
+    @Override
     public Boolean insertQuery(Connection con) throws SQLException {
         String query = "INSERT INTO joueur (idjoueur, score, temps_test, level_game)";
         query += " VALUES (?, ?, ?, ?)";
@@ -71,6 +72,7 @@ public class Joueur  implements TableInterface {
      * @return
      * @throws SQLException
      */
+    @Override
     public Boolean updateQuery(Connection con) throws SQLException {
         String query = "UPDATE joueur SET score = ?, temps_test = ?, level_game = ?";
         query += " WHERE idjoueur = ?";
@@ -97,6 +99,7 @@ public class Joueur  implements TableInterface {
      * @return
      * @throws SQLException
      */
+    @Override
     public Boolean deleteQuery(Connection con) throws SQLException {
         String query = "DELETE FROM joueur WHERE idjoueur = ?";
 

@@ -5,7 +5,7 @@ import jdbc.tableClass.Interfaces.TableInterface;
 import java.sql.*;
 
 /**
- * Class    : Joueur
+ * Class    : Question
  * Author   : Justin Métayer
  * Version  : 1.0.0
  *
@@ -55,6 +55,7 @@ public class Question implements TableInterface {
      * @return
      * @throws SQLException
      */
+    @Override
     public Boolean insertQuery(Connection con) throws SQLException {
         String query = "INSERT INTO question (idquestion, indice, positionreponse, description_question, level_game, idreponse)";
         query += " VALUES (?, ?, ?, ?, ?, ?)";
@@ -84,6 +85,7 @@ public class Question implements TableInterface {
      * @return
      * @throws SQLException
      */
+    @Override
     public Boolean updateQuery(Connection con) throws SQLException {
         String query = "UPDATE question SET indice = ?, positionreponse = ?, description_question = ?, level_game = ?, idreponse = ?";
         query += " WHERE idquestion = ?";
@@ -113,6 +115,7 @@ public class Question implements TableInterface {
      * @return
      * @throws SQLException
      */
+    @Override
     public Boolean deleteQuery(Connection con) throws SQLException {
         String query = "DELETE FROM question WHERE idquestion = ?";
 
