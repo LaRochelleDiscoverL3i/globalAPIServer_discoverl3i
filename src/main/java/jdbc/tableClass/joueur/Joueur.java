@@ -1,5 +1,7 @@
 package jdbc.tableClass.joueur;
 
+import jdbc.tableClass.Interfaces.TableInterface;
+
 import java.sql.*;
 
 /**
@@ -9,7 +11,7 @@ import java.sql.*;
  *
  * Def      : Classe pour l'object Joueur
  */
-public class Joueur {
+public class Joueur  implements TableInterface {
     /**
      * Variables
      */
