@@ -7,6 +7,13 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 
+/**
+ * Class    : JDBCTest
+ * Author   : Justin Métayer
+ * Version  : 1.0.0
+ *
+ * Def      : Classe de TEST
+ */
 public class JDBCTest {
 
     public static void main(String[] args) throws SQLException {
