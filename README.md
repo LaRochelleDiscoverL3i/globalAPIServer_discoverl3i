@@ -7,7 +7,7 @@ Java application to create an API to centralize queries
 ```java
     @Override
     public void start() throws Exception {
-        LOGGER.info("[mainAPIServer] Start server !");
+        LOGGER.info("[example.mainAPIServer] Start server !");
 
         //Create Route for Vertx
         Router router = Router.router(vertx);

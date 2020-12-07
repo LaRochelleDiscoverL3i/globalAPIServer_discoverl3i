@@ -1,3 +1,5 @@
+package example;
+
 import io.vertx.core.Vertx;
 
 /**
