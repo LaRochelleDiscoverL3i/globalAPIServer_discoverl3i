@@ -1,8 +1,11 @@
 package TableToJson.Question;
 
 import TableToJson.Interfaces.ToJsonInterface;
+import TableToJson.Question_Joueur.QuestionJoueurToJson;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
 import jdbc.tableClass.question.Question;
 import java.util.List;
 
@@ -14,6 +17,8 @@ import java.util.List;
  * Def      : Classe pour faire la conversion en JSON
  */
 public class QuestionToJson implements ToJsonInterface {
+    private static final Logger LOGGER = LoggerFactory.getLogger(QuestionToJson.class);
+
     /**
      * Method   : toJson
      * Params   : obj(Object)
@@ -33,21 +38,24 @@ public class QuestionToJson implements ToJsonInterface {
             result.put("description_question", question.getDescription_question());
             result.put("level_game", question.getLevel_game());
             result.put("idreponse", question.getIdreponse());
+
+            LOGGER.info("[QuestionToJson] Conversion Question to Json Object - IdQuestion : "+question.getIdquestion());
         }
         else{
+            LOGGER.warn("[QuestionToJson] Erreur : Le parametre de la fonction toJson n'est pas le bon - toJson(Question)");
             throw new Exception("Not good class object !");
         }
         return result;
     }
 
     /**
-     * Method   : ArrayToJson
-     * Params   : obj(Object)
+     * Method   : arrayToJson
+     * Params   : obj_list(List<Object>)
      * Return   : JsonArray
      * Def      : Function permettant la conversion d'une liste de Question en List JSON
      */
     @Override
-    public JsonArray ArrayToJson(List<Object> obj_list) throws Exception {
+    public JsonArray arrayToJson(List<Object> obj_list) throws Exception {
         JsonArray results = new JsonArray();
 
         for(Object obj : obj_list){
@@ -55,6 +63,7 @@ public class QuestionToJson implements ToJsonInterface {
                 results.add(toJson(obj));
             }
             else{
+                LOGGER.warn("[QuestionJoueurToJson] Erreur : Le parametre de la fonction ArrayToJson n'est pas le bon - arrayToJson(List<Question>)");
                 throw new Exception("Not good class object !");
             }
         }

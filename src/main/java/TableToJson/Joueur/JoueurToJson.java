@@ -3,6 +3,8 @@ package TableToJson.Joueur;
 import TableToJson.Interfaces.ToJsonInterface;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
 import jdbc.tableClass.joueur.Joueur;
 import java.util.List;
 
@@ -14,6 +16,8 @@ import java.util.List;
  * Def      : Classe pour faire la conversion en JSON
  */
 public class JoueurToJson implements ToJsonInterface {
+    private static final Logger LOGGER = LoggerFactory.getLogger(JoueurToJson.class);
+
     /**
      * Method   : toJson
      * Params   : obj(Object)
@@ -31,21 +35,24 @@ public class JoueurToJson implements ToJsonInterface {
             result.put("score", joueur.getScore());
             result.put("temps_test", joueur.getTemps_test());
             result.put("level_game", joueur.getLevel_game());
+
+            LOGGER.info("[JoueurToJson] Conversion Joueur to Json Object - IdJoueur : "+joueur.getIdjoueur());
         }
         else{
+            LOGGER.warn("[JoueurToJson] Erreur : Le parametre de la fonction toJson n'est pas le bon - toJson(Joueur)");
             throw new Exception("Not good class object !");
         }
         return result;
     }
 
     /**
-     * Method   : ArrayToJson
-     * Params   : obj(Object)
+     * Method   : arrayToJson
+     * Params   : obj_list(List<Object>)
      * Return   : JsonArray
      * Def      : Function permettant la conversion d'une liste de Joueur en List JSON
      */
     @Override
-    public JsonArray ArrayToJson(List<Object> obj_list) throws Exception {
+    public JsonArray arrayToJson(List<Object> obj_list) throws Exception {
         JsonArray results = new JsonArray();
 
         for(Object obj : obj_list){
@@ -53,6 +60,7 @@ public class JoueurToJson implements ToJsonInterface {
                 results.add(toJson(obj));
             }
             else{
+                LOGGER.warn("[JoueurToJson] Erreur : Le parametre de la fonction ArrayToJson n'est pas le bon - arrayToJson(List<Joueur>)");
                 throw new Exception("Not good class object !");
             }
         }

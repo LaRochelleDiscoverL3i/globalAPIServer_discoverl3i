@@ -13,5 +13,5 @@ import java.util.List;
  */
 public interface ToJsonInterface {
     public JsonObject toJson(Object obj) throws Exception;
-    public JsonArray ArrayToJson(List<Object> obj_list) throws Exception;
+    public JsonArray arrayToJson(List<Object> obj_list) throws Exception;
 }
