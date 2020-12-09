@@ -1,5 +1,8 @@
 package jdbc;
 
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
+
 import java.sql.*;
 
 /**
@@ -22,6 +25,9 @@ public class PostgresJDBC {
     private String login = "LaRochelleDiscoverL3i";
     private String password = "LaRochelleDiscoverL3i";
     private String url = "localhost:5432/"; //Penser au / à la fin
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PostgresJDBC.class);
+
 
     /**
      * Method   : PostgresJDBC
@@ -51,7 +57,8 @@ public class PostgresJDBC {
             System.exit(0);
         }
 
-        System.out.println("Opened database successfully");
+        //System.out.println("Opened database successfully");
+        LOGGER.info("[PostgresJDBC] Opened database successfully");
     }
 
     /**
