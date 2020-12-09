@@ -41,3 +41,6 @@ Each package has a specific role :
 - TableAPI : Builds routes and actions on a REST call as the return JSON result
 - TableToJson : Allows conversion of the Java Class equivalent to a table to a JSON or a list of this class to a JSONArray
 
+## Execution
+
+> mvn clean compile exec:java
