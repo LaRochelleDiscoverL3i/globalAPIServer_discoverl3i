@@ -1,8 +1,6 @@
 package jdbc.tableClass.scan_joueur;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import jdbc.tableClass.Interfaces.TableInterface;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
