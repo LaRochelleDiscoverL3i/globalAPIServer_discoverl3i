@@ -101,9 +101,9 @@ public class JoueurHandler {
         try {
             Joueur joueur = new Joueur(
                     Integer.parseInt(routingContext.request().getParam("idjoueur")),
-                    Integer.parseInt(routingContext.request().getParam("score").isEmpty() ? null : routingContext.request().getParam("score") ),
-                    Timestamp.valueOf(routingContext.request().getParam("temps_test").isEmpty() ? null : routingContext.request().getParam("temps_test")),
-                    Integer.parseInt(routingContext.request().getParam("level_game").isEmpty() ? null : routingContext.request().getParam("level_game"))
+                    routingContext.request().getParam("score").isEmpty() ? null : Integer.parseInt(routingContext.request().getParam("score") ),
+                    routingContext.request().getParam("temps_test").isEmpty() ? null : Timestamp.valueOf(routingContext.request().getParam("temps_test")),
+                    routingContext.request().getParam("level_game").isEmpty() ? null : Integer.parseInt(routingContext.request().getParam("level_game"))
             );
 
             Boolean result = joueurJDBC.deleteJoueur(joueur);
