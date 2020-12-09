@@ -34,7 +34,7 @@ public class ServerClass extends AbstractVerticle {
         router = questionJoueurAPI.getAllRoutes(router);
         router = reponseAPI.getAllRoutes(router);
         router = scanJoueurAPI.getAllRoutes(router);
-        
+
         //Start server
         vertx.createHttpServer()
                 .requestHandler(router)
