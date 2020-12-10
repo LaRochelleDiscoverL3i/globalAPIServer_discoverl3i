@@ -32,6 +32,14 @@ public class ScanJoueurHandler {
                     .end(Json.encodePrettily(cstj.arrayToJson(obj_list)));
         }catch (Exception e){
             LOGGER.warn("[ScanJoueurHandler] Exception error - getAllItems : "+e.getMessage());
+
+            final JsonObject jsonResponse = new JsonObject();
+            jsonResponse.put("Error", e.getMessage());
+
+            routingContext.response()
+                    .setStatusCode(500)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(jsonResponse));
         }
     }
     public static void addItem(RoutingContext routingContext) {
@@ -64,6 +72,14 @@ public class ScanJoueurHandler {
             }
         }catch (Exception e){
             LOGGER.warn("[ScanJoueurHandler] Exception error - addItem : "+e.getMessage());
+
+            final JsonObject jsonResponse = new JsonObject();
+            jsonResponse.put("Error", e.getMessage());
+
+            routingContext.response()
+                    .setStatusCode(500)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(jsonResponse));
         }
     }
     public static void updateItem(RoutingContext routingContext) {
@@ -96,6 +112,14 @@ public class ScanJoueurHandler {
             }
         }catch (Exception e){
             LOGGER.warn("[ScanJoueurHandler] Exception error - updateItem : "+e.getMessage());
+
+            final JsonObject jsonResponse = new JsonObject();
+            jsonResponse.put("Error", e.getMessage());
+
+            routingContext.response()
+                    .setStatusCode(500)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(jsonResponse));
         }
     }
     public static void deleteItem(RoutingContext routingContext) {
@@ -128,6 +152,14 @@ public class ScanJoueurHandler {
             }
         }catch (Exception e){
             LOGGER.warn("[ScanJoueurHandler] Exception error - deleteItem : "+e.getMessage());
+
+            final JsonObject jsonResponse = new JsonObject();
+            jsonResponse.put("Error", e.getMessage());
+
+            routingContext.response()
+                    .setStatusCode(500)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(jsonResponse));
         }
     }
 }

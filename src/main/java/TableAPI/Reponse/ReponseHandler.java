@@ -32,6 +32,14 @@ public class ReponseHandler {
                     .end(Json.encodePrettily(rtj.arrayToJson(obj_list)));
         }catch (Exception e){
             LOGGER.warn("[ReponseHandler] Exception error - getAllItems : "+e.getMessage());
+
+            final JsonObject jsonResponse = new JsonObject();
+            jsonResponse.put("Error", e.getMessage());
+
+            routingContext.response()
+                    .setStatusCode(500)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(jsonResponse));
         }
     }
     public static void addItem(RoutingContext routingContext) {
@@ -63,6 +71,14 @@ public class ReponseHandler {
             }
         }catch (Exception e){
             LOGGER.warn("[ReponseHandler] Exception error - addItem : "+e.getMessage());
+
+            final JsonObject jsonResponse = new JsonObject();
+            jsonResponse.put("Error", e.getMessage());
+
+            routingContext.response()
+                    .setStatusCode(500)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(jsonResponse));
         }
     }
     public static void updateItem(RoutingContext routingContext) {
@@ -94,6 +110,14 @@ public class ReponseHandler {
             }
         }catch (Exception e){
             LOGGER.warn("[ReponseHandler] Exception error - updateItem : "+e.getMessage());
+
+            final JsonObject jsonResponse = new JsonObject();
+            jsonResponse.put("Error", e.getMessage());
+
+            routingContext.response()
+                    .setStatusCode(500)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(jsonResponse));
         }
     }
     public static void deleteItem(RoutingContext routingContext) {
@@ -125,6 +149,14 @@ public class ReponseHandler {
             }
         }catch (Exception e){
             LOGGER.warn("[ReponseHandler] Exception error - deleteItem : "+e.getMessage());
+
+            final JsonObject jsonResponse = new JsonObject();
+            jsonResponse.put("Error", e.getMessage());
+
+            routingContext.response()
+                    .setStatusCode(500)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(jsonResponse));
         }
     }
 }

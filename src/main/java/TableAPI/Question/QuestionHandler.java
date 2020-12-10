@@ -33,6 +33,14 @@ public class QuestionHandler {
                     .end(Json.encodePrettily(qtj.arrayToJson(obj_list)));
         }catch (Exception e){
             LOGGER.warn("[QuestionHandler] Exception error - getAllItems : "+e.getMessage());
+
+            final JsonObject jsonResponse = new JsonObject();
+            jsonResponse.put("Error", e.getMessage());
+
+            routingContext.response()
+                    .setStatusCode(500)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(jsonResponse));
         }
     }
     public static void addItem(RoutingContext routingContext) {
@@ -67,6 +75,14 @@ public class QuestionHandler {
             }
         }catch (Exception e){
             LOGGER.warn("[QuestionHandler] Exception error - addItem : "+e.getMessage());
+
+            final JsonObject jsonResponse = new JsonObject();
+            jsonResponse.put("Error", e.getMessage());
+
+            routingContext.response()
+                    .setStatusCode(500)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(jsonResponse));
         }
     }
     public static void updateItem(RoutingContext routingContext) {
@@ -101,6 +117,14 @@ public class QuestionHandler {
             }
         }catch (Exception e){
             LOGGER.warn("[QuestionHandler] Exception error - updateItem : "+e.getMessage());
+
+            final JsonObject jsonResponse = new JsonObject();
+            jsonResponse.put("Error", e.getMessage());
+
+            routingContext.response()
+                    .setStatusCode(500)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(jsonResponse));
         }
     }
     public static void deleteItem(RoutingContext routingContext) {
@@ -135,6 +159,14 @@ public class QuestionHandler {
             }
         }catch (Exception e){
             LOGGER.warn("[QuestionHandler] Exception error - deleteItem : "+e.getMessage());
+
+            final JsonObject jsonResponse = new JsonObject();
+            jsonResponse.put("Error", e.getMessage());
+
+            routingContext.response()
+                    .setStatusCode(500)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(jsonResponse));
         }
     }
 }

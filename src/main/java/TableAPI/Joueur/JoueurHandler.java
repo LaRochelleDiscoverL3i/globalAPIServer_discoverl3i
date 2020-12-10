@@ -63,6 +63,14 @@ public class JoueurHandler {
             }
         }catch (Exception e){
             LOGGER.warn("[JoueurHandler] Exception error - addItem : "+e.getMessage());
+
+            final JsonObject jsonResponse = new JsonObject();
+            jsonResponse.put("Error", e.getMessage());
+
+            routingContext.response()
+                    .setStatusCode(500)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(jsonResponse));
         }
     }
     public static void updateItem(RoutingContext routingContext) {
@@ -95,6 +103,14 @@ public class JoueurHandler {
             }
         }catch (Exception e){
             LOGGER.warn("[JoueurHandler] Exception error - updateItem : "+e.getMessage());
+
+            final JsonObject jsonResponse = new JsonObject();
+            jsonResponse.put("Error", e.getMessage());
+
+            routingContext.response()
+                    .setStatusCode(500)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(jsonResponse));
         }
     }
     public static void deleteItem(RoutingContext routingContext) {
@@ -127,6 +143,14 @@ public class JoueurHandler {
             }
         }catch (Exception e){
             LOGGER.warn("[JoueurHandler] Exception error - deleteItem : "+e.getMessage());
+
+            final JsonObject jsonResponse = new JsonObject();
+            jsonResponse.put("Error", e.getMessage());
+
+            routingContext.response()
+                    .setStatusCode(500)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(jsonResponse));
         }
     }
 }
