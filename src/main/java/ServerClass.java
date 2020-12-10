@@ -8,8 +8,14 @@ import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.Router;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Properties;
+
 public class ServerClass extends AbstractVerticle {
     private static final Logger LOGGER = LoggerFactory.getLogger(ServerClass.class);
+    private static final int DEFAULT_PORT = 8080;
+    private Properties server_config = new Properties();
 
     /**
      * Function : start
@@ -18,8 +24,13 @@ public class ServerClass extends AbstractVerticle {
      */
     @Override
     public void start() throws Exception {
-        LOGGER.info("[ServerClass] Start server !");
+        LOGGER.info("[ServerClass] Load config for server !");
+        FileInputStream fis = new FileInputStream("src/main/java/config/server_config.properties");
+        server_config.load(fis);
 
+        int port_load = server_config.getProperty("port") == null ? 0 : Integer.parseInt(server_config.getProperty("port"));
+
+        LOGGER.info("[ServerClass] Start server !");
         //Create Route for Vertx
         Router router = Router.router(vertx);
         //Define route
@@ -38,7 +49,8 @@ public class ServerClass extends AbstractVerticle {
         //Start server
         vertx.createHttpServer()
                 .requestHandler(router)
-                .listen(8000);
+                .listen(port_load != 0 ? port_load : DEFAULT_PORT);
+        LOGGER.info("[ServerClass] Open server at port : "+(port_load != 0 ? port_load : DEFAULT_PORT));
     }
 
     /**
