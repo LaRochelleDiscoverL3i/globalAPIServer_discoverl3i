@@ -1,8 +1,6 @@
 package jdbc.tableClass.scan_joueur;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import jdbc.tableClass.Interfaces.TableInterface;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -109,7 +107,7 @@ public class ScanJoueur implements TableInterface {
     /**
      * Method   : getIdjoueur
      * Params   : None
-     * Return   : None
+     * Return   : int
      *
      * Def      : Getter > idjoueur
      *
@@ -122,7 +120,7 @@ public class ScanJoueur implements TableInterface {
     /**
      * Method   : getIdreponse
      * Params   : None
-     * Return   : None
+     * Return   : int
      *
      * Def      : Getter > idreponse
      *
@@ -135,7 +133,7 @@ public class ScanJoueur implements TableInterface {
     /**
      * Method   : getIdquestion
      * Params   : None
-     * Return   : None
+     * Return   : int
      *
      * Def      : Getter > idquestion
      *
@@ -148,7 +146,7 @@ public class ScanJoueur implements TableInterface {
     /**
      * Method   : getBooleen_question
      * Params   : None
-     * Return   : None
+     * Return   : Boolean
      *
      * Def      : Getter > booleen_question
      *

@@ -69,6 +69,7 @@ public class QuestionJDBC {
                     rs.getInt("positionreponse"),
                     rs.getString("description_question"),
                     rs.getInt("level_game"),
+                    Question.Categorie_question.valueOf(rs.getString("categorie_question")),
                     rs.getInt("idreponse")
             );
 

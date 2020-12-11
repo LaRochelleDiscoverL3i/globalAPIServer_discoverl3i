@@ -26,3 +26,23 @@ When you run the example, the server builds two GET routes.
 - [http://localhost:8080/api/name/:name](http://localhost:8080/api/example/:name)
 
 For the second URL, if you specify the :name by your name, the display will change using this as a parameter.
+
+## Struture
+
+The project is divided into several packages:
+- example
+- config
+- jdbc
+- TableAPI
+- TaleToJson
+
+Each package has a specific role :
+- example : Is an example
+- config : Contains all configuration files
+- jdbc : Controls the connection to the database as well as the conversion of database tables to Java object
+- TableAPI : Builds routes and actions on a REST call as the return JSON result
+- TableToJson : Allows conversion of the Java Class equivalent to a table to a JSON or a list of this class to a JSONArray
+
+## Execution
+
+> mvn clean compile exec:java

@@ -156,7 +156,7 @@ public class Joueur  implements TableInterface {
     /**
      * Method   : getIdjoueur
      * Params   : None
-     * Return   : None
+     * Return   : int
      *
      * Def      : Getter > idjoueur
      *
@@ -169,7 +169,7 @@ public class Joueur  implements TableInterface {
     /**
      * Method   : getScore
      * Params   : None
-     * Return   : None
+     * Return   : int
      *
      * Def      : Getter > score
      *
@@ -182,7 +182,7 @@ public class Joueur  implements TableInterface {
     /**
      * Method   : getTemps_test
      * Params   : None
-     * Return   : None
+     * Return   : Timestamp
      *
      * Def      : Getter > temps_test
      *
@@ -195,7 +195,7 @@ public class Joueur  implements TableInterface {
     /**
      * Method   : getLevel_game
      * Params   : None
-     * Return   : None
+     * Return   : int
      *
      * Def      : Getter > level_game
      *

@@ -124,7 +124,7 @@ public class QuestionJoueur implements TableInterface {
     /**
      * Method   : getIdquestion
      * Params   : None
-     * Return   : None
+     * Return   : int
      *
      * Def      : Getter > idquestion
      *
@@ -137,7 +137,7 @@ public class QuestionJoueur implements TableInterface {
     /**
      * Method   : getIdjoueur
      * Params   : None
-     * Return   : None
+     * Return   : int
      *
      * Def      : Getter > idjoueur
      *
@@ -150,7 +150,7 @@ public class QuestionJoueur implements TableInterface {
     /**
      * Method   : getNbre_tentative
      * Params   : None
-     * Return   : None
+     * Return   : int
      *
      * Def      : Getter > nbre_tentative
      *
@@ -163,7 +163,7 @@ public class QuestionJoueur implements TableInterface {
     /**
      * Method   : getBooleen
      * Params   : None
-     * Return   : None
+     * Return   : Boolean
      *
      * Def      : Getter > booleen
      *

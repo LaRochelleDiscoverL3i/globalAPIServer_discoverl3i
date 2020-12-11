@@ -13,6 +13,16 @@ import java.sql.*;
  */
 public class Question implements TableInterface {
     /**
+     * Enum
+     */
+    public enum Categorie_question {
+        collaboration,
+        auteur,
+        projet,
+        creation
+    }
+
+    /**
      * Variables
      */
     private int idquestion;//Id de l'objet question
@@ -20,11 +30,12 @@ public class Question implements TableInterface {
     private int positionreponse;
     private String description_question;
     private int level_game;
+    private Categorie_question categorie_question;
     private int idreponse;
 
     /**
      * Method   : Question
-     * Params   : idquestion(Int), indice(String), positionreponse(Int), description_question(String), level_game(Int), idreponse(Int)
+     * Params   : idquestion(Int), indice(String), positionreponse(Int), description_question(String), level_game(Int), categorie_question(Categorie_question), idreponse(Int)
      * Return   : None
      * Def      : Init method
      */
@@ -34,6 +45,7 @@ public class Question implements TableInterface {
             int positionreponse,
             String description_question,
             int level_game,
+            Categorie_question categorie_question,
             int idreponse
     ){
         this.idquestion = idquestion;
@@ -41,6 +53,7 @@ public class Question implements TableInterface {
         this.positionreponse = positionreponse;
         this.description_question = description_question;
         this.level_game = level_game;
+        this.categorie_question = categorie_question;
         this.idreponse = idreponse;
     }
 
@@ -133,7 +146,7 @@ public class Question implements TableInterface {
     /**
      * Method   : getIdquestion
      * Params   : None
-     * Return   : None
+     * Return   : int
      *
      * Def      : Getter > idquestion
      *
@@ -146,7 +159,7 @@ public class Question implements TableInterface {
     /**
      * Method   : getIndice
      * Params   : None
-     * Return   : None
+     * Return   : String
      *
      * Def      : Getter > indice
      *
@@ -159,7 +172,7 @@ public class Question implements TableInterface {
     /**
      * Method   : getPositionreponse
      * Params   : None
-     * Return   : None
+     * Return   : int
      *
      * Def      : Getter > positionreponse
      *
@@ -172,7 +185,7 @@ public class Question implements TableInterface {
     /**
      * Method   : getDescription_question
      * Params   : None
-     * Return   : None
+     * Return   : String
      *
      * Def      : Getter > description_question
      *
@@ -185,7 +198,7 @@ public class Question implements TableInterface {
     /**
      * Method   : getLevel_game
      * Params   : None
-     * Return   : None
+     * Return   : int
      *
      * Def      : Getter > level_game
      *
@@ -196,9 +209,20 @@ public class Question implements TableInterface {
     }
 
     /**
+     * Method   : getCategorie_question
+     * Params   : None
+     * Return   : Categorie_question
+     *
+     * Def      : Getter > categorie_question
+     *
+     * @return
+     */
+    public Categorie_question getCategorie_question() { return categorie_question; };
+
+    /**
      * Method   : getIdreponse
      * Params   : None
-     * Return   : None
+     * Return   : int
      *
      * Def      : Getter > idreponse
      *
@@ -259,6 +283,17 @@ public class Question implements TableInterface {
     public void setLevel_game(int level_game) {
         this.level_game = level_game;
     }
+
+    /**
+     * Method   : setCategorie_question
+     * Params   : categorie_question(idreponse)
+     * Return   : None
+     *
+     * Def      : Setter > categorie_question
+     *
+     * @param categorie_question
+     */
+    public void setCategorie_question(Categorie_question categorie_question) { this.categorie_question = categorie_question; }
 
     /**
      * Method   : setIdreponse
