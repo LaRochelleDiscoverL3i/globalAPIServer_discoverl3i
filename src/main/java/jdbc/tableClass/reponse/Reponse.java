@@ -112,7 +112,7 @@ public class Reponse implements TableInterface {
     /**
      * Method   : getIdreponse
      * Params   : None
-     * Return   : None
+     * Return   : int
      *
      * Def      : Getter > idreponse
      *
@@ -125,7 +125,7 @@ public class Reponse implements TableInterface {
     /**
      * Method   : getDescription_reponse
      * Params   : None
-     * Return   : None
+     * Return   : String
      *
      * Def      : Getter > description_reponse
      *
@@ -138,7 +138,7 @@ public class Reponse implements TableInterface {
     /**
      * Method   : getIdquestion
      * Params   : None
-     * Return   : None
+     * Return   : String
      *
      * Def      : Getter > idquestion
      *

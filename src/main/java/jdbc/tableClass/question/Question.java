@@ -12,6 +12,9 @@ import java.sql.*;
  * Def      : Classe pour l'object Question
  */
 public class Question implements TableInterface {
+    /**
+     * Enum
+     */
     public enum Categorie_question {
         collaboration,
         auteur,
@@ -143,7 +146,7 @@ public class Question implements TableInterface {
     /**
      * Method   : getIdquestion
      * Params   : None
-     * Return   : None
+     * Return   : int
      *
      * Def      : Getter > idquestion
      *
@@ -156,7 +159,7 @@ public class Question implements TableInterface {
     /**
      * Method   : getIndice
      * Params   : None
-     * Return   : None
+     * Return   : String
      *
      * Def      : Getter > indice
      *
@@ -169,7 +172,7 @@ public class Question implements TableInterface {
     /**
      * Method   : getPositionreponse
      * Params   : None
-     * Return   : None
+     * Return   : int
      *
      * Def      : Getter > positionreponse
      *
@@ -182,7 +185,7 @@ public class Question implements TableInterface {
     /**
      * Method   : getDescription_question
      * Params   : None
-     * Return   : None
+     * Return   : String
      *
      * Def      : Getter > description_question
      *
@@ -195,7 +198,7 @@ public class Question implements TableInterface {
     /**
      * Method   : getLevel_game
      * Params   : None
-     * Return   : None
+     * Return   : int
      *
      * Def      : Getter > level_game
      *
@@ -219,7 +222,7 @@ public class Question implements TableInterface {
     /**
      * Method   : getIdreponse
      * Params   : None
-     * Return   : None
+     * Return   : int
      *
      * Def      : Getter > idreponse
      *

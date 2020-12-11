@@ -21,18 +21,11 @@ public class PostgresJDBC {
      * Variables
      */
     private Connection con = null;
-
-    /**
-     * Postgres Connection Constante
-     */
-    /*private String BDD = "LaRochelleDiscoverL3i";
-    private String login = "LaRochelleDiscoverL3i";
-    private String password = "LaRochelleDiscoverL3i";
-    private String url = "localhost:5432/"; //Penser au / à la fin
-     */
-
     private Properties postgres_config = new Properties();
 
+    /**
+     * Constantes
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(PostgresJDBC.class);
 
     /**

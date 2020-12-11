@@ -1,25 +1,43 @@
 package TableAPI.Scan_Joueur;
 
-import TableToJson.Reponse.ReponseToJson;
 import TableToJson.Scan_Joueur.ScanJoueurToJson;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.RoutingContext;
-import jdbc.tableClass.reponse.Reponse;
-import jdbc.tableClass.reponse.ReponseJDBC;
 import jdbc.tableClass.scan_joueur.ScanJoueur;
 import jdbc.tableClass.scan_joueur.ScanJoueurJDBC;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class    : ScanJoueurHandler
+ * Author   : Justin Métayer
+ * Version  : 1.0.0
+ *
+ * Def      : Classe gestion des retours des requêtes REST
+ */
 public class ScanJoueurHandler {
+    /**
+     * Constantes
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(ScanJoueurHandler.class);
+
+    /**
+     * Variales
+     */
     private static ScanJoueurJDBC scanJoueurJDBC = new ScanJoueurJDBC();
     private static ScanJoueurToJson cstj = new ScanJoueurToJson();
 
+    /**
+     * Method   : getAllItems
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête GET
+     *
+     * @param routingContext
+     */
     public static void getAllItems(RoutingContext routingContext) {
         try {
             List<ScanJoueur> allReponse = scanJoueurJDBC.getAllScanJoueurs();
@@ -42,6 +60,15 @@ public class ScanJoueurHandler {
                     .end(Json.encodePrettily(jsonResponse));
         }
     }
+
+    /**
+     * Method   : addItem
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête POST
+     *
+     * @param routingContext
+     */
     public static void addItem(RoutingContext routingContext) {
         try {
             ScanJoueur scanJoueur = new ScanJoueur(
@@ -82,6 +109,15 @@ public class ScanJoueurHandler {
                     .end(Json.encodePrettily(jsonResponse));
         }
     }
+
+    /**
+     * Method   : updateItem
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête PUT
+     *
+     * @param routingContext
+     */
     public static void updateItem(RoutingContext routingContext) {
         try {
             ScanJoueur scanJoueur = new ScanJoueur(
@@ -122,6 +158,15 @@ public class ScanJoueurHandler {
                     .end(Json.encodePrettily(jsonResponse));
         }
     }
+
+    /**
+     * Method   : deleteItem
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête DEL
+     *
+     * @param routingContext
+     */
     public static void deleteItem(RoutingContext routingContext) {
         try {
             ScanJoueur scanJoueur = new ScanJoueur(

@@ -1,7 +1,6 @@
 package TableAPI.Joueur;
 
 import TableToJson.Joueur.JoueurToJson;
-import example.ExampleRoute;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
@@ -9,16 +8,37 @@ import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.RoutingContext;
 import jdbc.tableClass.joueur.Joueur;
 import jdbc.tableClass.joueur.JoueurJDBC;
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class    : JoueurHandler
+ * Author   : Justin Métayer
+ * Version  : 1.0.0
+ *
+ * Def      : Classe gestion des retours des requêtes REST
+ */
 public class JoueurHandler {
+    /**
+     * Constantes
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(JoueurHandler.class);
+
+    /**
+     * Variables
+     */
     private static JoueurJDBC joueurJDBC = new JoueurJDBC();
     private static JoueurToJson jtj = new JoueurToJson();
 
+    /**
+     * Method   : getAllItems
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête GET
+     *
+     * @param routingContext
+     */
     public static void getAllItems(RoutingContext routingContext) {
         try {
             List<Joueur> allJoueur = joueurJDBC.getAllJoueur();
@@ -33,6 +53,15 @@ public class JoueurHandler {
             LOGGER.warn("[JoueurHandler] Exception error - getAllItems : "+e.getMessage());
         }
     }
+
+    /**
+     * Method   : addItem
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête POST
+     *
+     * @param routingContext
+     */
     public static void addItem(RoutingContext routingContext) {
         try {
             Joueur joueur = new Joueur(
@@ -73,6 +102,15 @@ public class JoueurHandler {
                     .end(Json.encodePrettily(jsonResponse));
         }
     }
+
+    /**
+     * Method   : updateItem
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête PUT
+     *
+     * @param routingContext
+     */
     public static void updateItem(RoutingContext routingContext) {
         try {
             Joueur joueur = new Joueur(
@@ -113,6 +151,15 @@ public class JoueurHandler {
                     .end(Json.encodePrettily(jsonResponse));
         }
     }
+
+    /**
+     * Method   : deleteItem
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête DEL
+     *
+     * @param routingContext
+     */
     public static void deleteItem(RoutingContext routingContext) {
         try {
             Joueur joueur = new Joueur(

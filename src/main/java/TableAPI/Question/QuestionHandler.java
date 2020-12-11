@@ -1,26 +1,43 @@
 package TableAPI.Question;
 
-import TableToJson.Joueur.JoueurToJson;
 import TableToJson.Question.QuestionToJson;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.RoutingContext;
-import jdbc.tableClass.joueur.Joueur;
-import jdbc.tableClass.joueur.JoueurJDBC;
 import jdbc.tableClass.question.Question;
 import jdbc.tableClass.question.QuestionJDBC;
-
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class    : QuestionHandler
+ * Author   : Justin Métayer
+ * Version  : 1.0.0
+ *
+ * Def      : Classe gestion des retours des requêtes REST
+ */
 public class QuestionHandler {
+    /**
+     * Constantes
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(QuestionHandler.class);
+
+    /**
+     * Variables
+     */
     private static QuestionJDBC questionJDBC = new QuestionJDBC();
     private static QuestionToJson qtj = new QuestionToJson();
 
+    /**
+     * Method   : getAllItems
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête GET
+     *
+     * @param routingContext
+     */
     public static void getAllItems(RoutingContext routingContext) {
         try {
             List<Question> allQuestion = questionJDBC.getAllQuestion();
@@ -43,6 +60,15 @@ public class QuestionHandler {
                     .end(Json.encodePrettily(jsonResponse));
         }
     }
+
+    /**
+     * Method   : addItem
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête POST
+     *
+     * @param routingContext
+     */
     public static void addItem(RoutingContext routingContext) {
         try {
             Question question = new Question(
@@ -86,6 +112,15 @@ public class QuestionHandler {
                     .end(Json.encodePrettily(jsonResponse));
         }
     }
+
+    /**
+     * Method   : updateItem
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête PUT
+     *
+     * @param routingContext
+     */
     public static void updateItem(RoutingContext routingContext) {
         try {
             Question question = new Question(
@@ -129,6 +164,15 @@ public class QuestionHandler {
                     .end(Json.encodePrettily(jsonResponse));
         }
     }
+
+    /**
+     * Method   : deleteItem
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête DEL
+     *
+     * @param routingContext
+     */
     public static void deleteItem(RoutingContext routingContext) {
         try {
             Question question = new Question(

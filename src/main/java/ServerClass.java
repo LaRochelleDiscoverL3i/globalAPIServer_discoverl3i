@@ -7,17 +7,34 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.Router;
-
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.Properties;
 
+/**
+ * Class    : ServerClass
+ * Author   : Justin Métayer
+ * Version  : 1.0.0
+ *
+ * Def      : Classe setup server
+ */
 public class ServerClass extends AbstractVerticle {
+    /**
+     * Constantes
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(ServerClass.class);
     private static final int DEFAULT_PORT = 8080;
+
+    /**
+     * Variables
+     */
     private Properties server_config = new Properties();
 
     /**
+     * Method   : start
+     * Params   : None
+     * Return   : None
+     * Def      : Methode pour lancer le serveur et init les routes
+     *
      * Function : start
      * @throws Exception
      * Def      : Override stop method of Vertx
@@ -54,6 +71,11 @@ public class ServerClass extends AbstractVerticle {
     }
 
     /**
+     * Method   : stop
+     * Params   : None
+     * Return   : None
+     * Def      : Methode pour stopper le serveur
+     *
      * Function : stop
      * @throws Exception
      * Def      : Override stop method of Vertx
