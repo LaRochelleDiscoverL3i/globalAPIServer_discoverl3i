@@ -51,6 +51,7 @@ public class QuestionHandler {
                     Integer.parseInt(routingContext.request().getParam("positionreponse")),
                     routingContext.request().getParam("description_question"),
                     Integer.parseInt(routingContext.request().getParam("level_game")),
+                    Question.Categorie_question.valueOf(routingContext.request().getParam("categorie_question")),
                     Integer.parseInt(routingContext.request().getParam("idreponse"))
             );
 
@@ -93,6 +94,7 @@ public class QuestionHandler {
                     Integer.parseInt(routingContext.request().getParam("positionreponse")),
                     routingContext.request().getParam("description_question"),
                     Integer.parseInt(routingContext.request().getParam("level_game")),
+                    Question.Categorie_question.valueOf(routingContext.request().getParam("categorie_question")),
                     Integer.parseInt(routingContext.request().getParam("idreponse"))
             );
 
@@ -135,6 +137,7 @@ public class QuestionHandler {
                     routingContext.request().getParam("positionreponse").isEmpty() ? null : Integer.parseInt(routingContext.request().getParam("positionreponse")),
                     routingContext.request().getParam("description_question").isEmpty() ? null : routingContext.request().getParam("description_question"),
                     routingContext.request().getParam("level_game").isEmpty() ? null : Integer.parseInt(routingContext.request().getParam("level_game")),
+                    routingContext.request().getParam("categorie_question").isEmpty() ? null : Question.Categorie_question.valueOf(routingContext.request().getParam("categorie_question")),
                     routingContext.request().getParam("idreponse").isEmpty() ? null : Integer.parseInt(routingContext.request().getParam("idreponse"))
             );
 
