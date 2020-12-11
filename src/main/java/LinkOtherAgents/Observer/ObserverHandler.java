@@ -55,7 +55,139 @@ public class ObserverHandler {
             );
 
         }catch (Exception e){
+            LOGGER.warn("[ObserverHandler] Method : observer_get_chercheur - Error message : "+e.getMessage());
+        }
+    }
 
+    public static void observer_get_analyse(RoutingContext routingContext){
+        try{
+            FileInputStream fis = new FileInputStream("src/main/java/config/server_config.properties");
+            agents_config.load(fis);
+
+            String url_observer = agents_config.getProperty("observer_url");
+            int port_observer = Integer.valueOf(agents_config.getProperty("observer_port"));
+            String joueur = routingContext.request().getParam("joueur");
+            String type = routingContext.request().getParam("joueur");
+            String requestUrl = "/analyste/"+joueur+"/"+type;
+
+            final Vertx vertx = Vertx.vertx();
+            WebClient client = WebClient.create(vertx);
+
+            client.get(port_observer, url_observer, requestUrl).send().onSuccess(
+                    response -> {
+                        LOGGER.info("[ObserverHandler] Method : observer_get_analyse - onSuccess return");
+
+                        routingContext.response()
+                                .setStatusCode(200)
+                                .putHeader("content-type", "application/json")
+                                .end(Json.encodePrettily(response.body().toJson()));
+                    }
+            ).onFailure(
+                    error -> {
+                        LOGGER.warn("[ObserverHandler] Method : observer_get_analyse - Error message : "+error.getMessage());
+
+                        final JsonObject jsonResponse = new JsonObject();
+                        jsonResponse.put("Error", error.getMessage());
+
+                        routingContext.response()
+                                .setStatusCode(500)
+                                .putHeader("content-type", "application/json")
+                                .end(Json.encodePrettily(jsonResponse));
+                    }
+            );
+
+        }catch (Exception e){
+            LOGGER.warn("[ObserverHandler] Method : observer_get_analyse - Error message : "+e.getMessage());
+        }
+    }
+
+    public static void observer_post_scan(RoutingContext routingContext){
+        try{
+            FileInputStream fis = new FileInputStream("src/main/java/config/server_config.properties");
+            agents_config.load(fis);
+
+            String url_observer = agents_config.getProperty("observer_url");
+            int port_observer = Integer.valueOf(agents_config.getProperty("observer_port"));
+            String requestUrl = "/reponse";
+
+            final Vertx vertx = Vertx.vertx();
+            WebClient client = WebClient.create(vertx);
+
+            client.post(port_observer, url_observer, requestUrl).sendJsonObject(
+                    new JsonObject()
+                        .put("question", agents_config.getProperty("question"))
+                        .put("chercheur", agents_config.getProperty("chercheur"))
+                        .put("joueur", agents_config.getProperty("joueur"))
+            ).onSuccess(
+                    response -> {
+                        LOGGER.info("[ObserverHandler] Method : observer_get_analyse - onSuccess return");
+
+                        routingContext.response()
+                                .setStatusCode(200)
+                                .putHeader("content-type", "application/json")
+                                .end(Json.encodePrettily(response.body().toJson()));
+                    }
+            ).onFailure(
+                    error -> {
+                        LOGGER.warn("[ObserverHandler] Method : observer_get_analyse - Error message : "+error.getMessage());
+
+                        final JsonObject jsonResponse = new JsonObject();
+                        jsonResponse.put("Error", error.getMessage());
+
+                        routingContext.response()
+                                .setStatusCode(500)
+                                .putHeader("content-type", "application/json")
+                                .end(Json.encodePrettily(jsonResponse));
+                    }
+            );
+
+        }catch (Exception e){
+            LOGGER.warn("[ObserverHandler] Method : observer_get_analyse - Error message : "+e.getMessage());
+        }
+    }
+
+    public static void observer_post_reponse(RoutingContext routingContext){
+        try{
+            FileInputStream fis = new FileInputStream("src/main/java/config/server_config.properties");
+            agents_config.load(fis);
+
+            String url_observer = agents_config.getProperty("observer_url");
+            int port_observer = Integer.valueOf(agents_config.getProperty("observer_port"));
+            String requestUrl = "/reponse ";
+
+            final Vertx vertx = Vertx.vertx();
+            WebClient client = WebClient.create(vertx);
+
+            client.post(port_observer, url_observer, requestUrl).sendJsonObject(
+                    new JsonObject()
+                        .put("question", agents_config.getProperty("question"))
+                        .put("reponse", agents_config.getProperty("chercheur"))
+                        .put("joueur", agents_config.getProperty("joueur"))
+            ).onSuccess(
+                    response -> {
+                        LOGGER.info("[ObserverHandler] Method : observer_get_analyse - onSuccess return");
+
+                        routingContext.response()
+                                .setStatusCode(200)
+                                .putHeader("content-type", "application/json")
+                                .end(Json.encodePrettily(response.body().toJson()));
+                    }
+            ).onFailure(
+                    error -> {
+                        LOGGER.warn("[ObserverHandler] Method : observer_get_analyse - Error message : "+error.getMessage());
+
+                        final JsonObject jsonResponse = new JsonObject();
+                        jsonResponse.put("Error", error.getMessage());
+
+                        routingContext.response()
+                                .setStatusCode(500)
+                                .putHeader("content-type", "application/json")
+                                .end(Json.encodePrettily(jsonResponse));
+                    }
+            );
+
+        }catch (Exception e){
+            LOGGER.warn("[ObserverHandler] Method : observer_get_analyse - Error message : "+e.getMessage());
         }
     }
 }
