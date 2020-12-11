@@ -7,10 +7,16 @@ import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.client.WebClient;
-
 import java.io.FileInputStream;
 import java.util.Properties;
 
+/**
+ * Class    : ObserverHandler
+ * Author   : Justin Métayer
+ * Version  : 1.0.0
+ *
+ * Def      : Classe de gestion des handler des routes de l'agent Observer
+ */
 public class ObserverHandler {
     /**
      * Constantes
@@ -18,6 +24,14 @@ public class ObserverHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(ObserverHandler.class);
     private static Properties agents_config = new Properties();
 
+    /**
+     * Method   : observer_get_chercheur
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête GET chercheur
+     *
+     * @param routingContext
+     */
     public static void observer_get_chercheur(RoutingContext routingContext){
         try{
             FileInputStream fis = new FileInputStream("src/main/java/config/server_config.properties");
@@ -59,6 +73,14 @@ public class ObserverHandler {
         }
     }
 
+    /**
+     * Method   : observer_get_analyse
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête GET analyse
+     *
+     * @param routingContext
+     */
     public static void observer_get_analyse(RoutingContext routingContext){
         try{
             FileInputStream fis = new FileInputStream("src/main/java/config/server_config.properties");
@@ -101,6 +123,14 @@ public class ObserverHandler {
         }
     }
 
+    /**
+     * Method   : observer_post_scan
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête POST scan
+     *
+     * @param routingContext
+     */
     public static void observer_post_scan(RoutingContext routingContext){
         try{
             FileInputStream fis = new FileInputStream("src/main/java/config/server_config.properties");
@@ -146,6 +176,14 @@ public class ObserverHandler {
         }
     }
 
+    /**
+     * Method   : observer_post_reponse
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête POST reponse
+     *
+     * @param routingContext
+     */
     public static void observer_post_reponse(RoutingContext routingContext){
         try{
             FileInputStream fis = new FileInputStream("src/main/java/config/server_config.properties");
