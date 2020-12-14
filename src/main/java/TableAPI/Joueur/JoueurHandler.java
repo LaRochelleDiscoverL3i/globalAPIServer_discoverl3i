@@ -87,12 +87,14 @@ public class JoueurHandler {
         try {
             Joueur joueur = new Joueur(
                     routingContext.request().getParam("idjoueur"),
-                    Integer.parseInt(routingContext.request().getParam("score")),
-                    Timestamp.valueOf(routingContext.request().getParam("temps_test")),
-                    Integer.parseInt(routingContext.request().getParam("level_game"))
+                    !routingContext.request().params().contains("score") ? null : Integer.parseInt(routingContext.request().getParam("score") ),
+                    !routingContext.request().params().contains("temps_test") ? null : Timestamp.valueOf(routingContext.request().getParam("temps_test")),
+                    !routingContext.request().params().contains("level_game") ? null : Integer.parseInt(routingContext.request().getParam("level_game"))
             );
 
             Boolean result = joueurJDBC.insertJoueur(joueur);
+
+            System.out.println(jtj.toJson(joueur));
 
             if(result) {
                 routingContext.response()
@@ -185,9 +187,9 @@ public class JoueurHandler {
         try {
             Joueur joueur = new Joueur(
                     routingContext.request().getParam("idjoueur"),
-                    routingContext.request().getParam("score").isEmpty() ? null : Integer.parseInt(routingContext.request().getParam("score") ),
-                    routingContext.request().getParam("temps_test").isEmpty() ? null : Timestamp.valueOf(routingContext.request().getParam("temps_test")),
-                    routingContext.request().getParam("level_game").isEmpty() ? null : Integer.parseInt(routingContext.request().getParam("level_game"))
+                    !routingContext.request().params().contains("score") ? null : Integer.parseInt(routingContext.request().getParam("score") ),
+                    !routingContext.request().params().contains("temps_test") ? null : Timestamp.valueOf(routingContext.request().getParam("temps_test")),
+                    !routingContext.request().params().contains("level_game") ? null : Integer.parseInt(routingContext.request().getParam("level_game"))
             );
 
             Boolean result = joueurJDBC.deleteJoueur(joueur);

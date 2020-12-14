@@ -2,10 +2,7 @@ package jdbc.tableClass.question_joueur;
 
 import jdbc.tableClass.Interfaces.TableInterface;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * Class    : QuestionJoueur
@@ -18,9 +15,9 @@ public class QuestionJoueur implements TableInterface {
     /**
      * Variables
      */
-    private int idquestion;
+    private Integer idquestion;
     private String idjoueur;
-    private int nbre_tentative;
+    private Integer nbre_tentative;
     private Boolean booleen;
 
     /**
@@ -29,7 +26,7 @@ public class QuestionJoueur implements TableInterface {
      * Return   : None
      * Def      : Init method
      */
-    public QuestionJoueur(int idquestion, String idjoueur, int nbre_tentative, Boolean booleen){
+    public QuestionJoueur(Integer idquestion, String idjoueur, Integer nbre_tentative, Boolean booleen){
         this.idquestion = idquestion;
         this.idjoueur = idjoueur;
         this.nbre_tentative = nbre_tentative;
@@ -82,8 +79,16 @@ public class QuestionJoueur implements TableInterface {
 
         PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
-        pst.setInt(1, this.nbre_tentative);
-        pst.setBoolean(2, this.booleen);
+        if (this.nbre_tentative == null){
+            pst.setNull(1, Types.INTEGER);
+        }else {
+            pst.setInt(1, this.nbre_tentative);
+        }
+        if (this.booleen == null){
+            pst.setNull(2, Types.BOOLEAN);
+        }else{
+            pst.setBoolean(2, this.booleen);
+        }
         pst.setInt(3, this.idquestion);
         pst.setString(4, this.idjoueur);
 
@@ -124,13 +129,13 @@ public class QuestionJoueur implements TableInterface {
     /**
      * Method   : getIdquestion
      * Params   : None
-     * Return   : int
+     * Return   : Integer
      *
      * Def      : Getter > idquestion
      *
      * @return
      */
-    public int getIdquestion() {
+    public Integer getIdquestion() {
         return idquestion;
     }
 
@@ -150,13 +155,13 @@ public class QuestionJoueur implements TableInterface {
     /**
      * Method   : getNbre_tentative
      * Params   : None
-     * Return   : int
+     * Return   : Integer
      *
      * Def      : Getter > nbre_tentative
      *
      * @return
      */
-    public int getNbre_tentative() {
+    public Integer getNbre_tentative() {
         return nbre_tentative;
     }
 
@@ -182,7 +187,7 @@ public class QuestionJoueur implements TableInterface {
      *
      * @param nbre_tentative
      */
-    public void setNbre_tentative(int nbre_tentative) {
+    public void setNbre_tentative(Integer nbre_tentative) {
         this.nbre_tentative = nbre_tentative;
     }
 

@@ -32,9 +32,21 @@ public class JoueurToJson implements ToJsonInterface {
             Joueur joueur = (Joueur) obj;
 
             result.put("idjoueur", joueur.getIdjoueur());
-            result.put("score", joueur.getScore());
-            result.put("temps_test", joueur.getTemps_test().toString());
-            result.put("level_game", joueur.getLevel_game());
+            if(joueur.getScore() == null){
+                result.putNull("score");
+            }else{
+                result.put("score", joueur.getScore());
+            }
+            if(joueur.getTemps_test() == null){
+                result.putNull("temps_test");
+            }else {
+                result.put("temps_test", joueur.getTemps_test().toString());
+            }
+            if(joueur.getLevel_game() == null){
+                result.putNull("level_game");
+            }else {
+                result.put("level_game", joueur.getLevel_game());
+            }
 
             LOGGER.info("[JoueurToJson] Conversion Joueur to Json Object - IdJoueur : "+joueur.getIdjoueur());
         }

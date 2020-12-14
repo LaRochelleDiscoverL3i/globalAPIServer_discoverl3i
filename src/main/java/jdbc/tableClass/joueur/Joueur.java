@@ -16,9 +16,9 @@ public class Joueur  implements TableInterface {
      * Variables
      */
     private String idjoueur;//Id de l'objet joueur
-    private int score;
+    private Integer score;
     private Timestamp temps_test;
-    private int level_game;
+    private Integer level_game;
 
     /**
      * Method   : Joueur
@@ -26,7 +26,7 @@ public class Joueur  implements TableInterface {
      * Return   : None
      * Def      : Init method
      */
-    public Joueur(String idjoueur, int score, Timestamp temps_test, int level_game){
+    public Joueur(String idjoueur, Integer score, Timestamp temps_test, Integer level_game){
         this.idjoueur = idjoueur;
         this.score = score;
         this.temps_test = temps_test;
@@ -51,9 +51,21 @@ public class Joueur  implements TableInterface {
 
         PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         pst.setString(1, this.idjoueur);
-        pst.setInt(2, this.score);
-        pst.setTimestamp(3, this.temps_test);
-        pst.setInt(4, this.level_game);
+        if (this.score != null) {
+            pst.setInt(2, this.score);
+        } else {
+            pst.setNull(2, Types.INTEGER);
+        }
+        if(this.temps_test != null){
+            pst.setTimestamp(3, this.temps_test);
+        }else{
+            pst.setNull(3, Types.TIMESTAMP);
+        }
+        if(this.level_game != null){
+            pst.setInt(4, this.level_game);
+        }else{
+            pst.setNull(4, Types.INTEGER);
+        }
 
         int rowAffected = pst.executeUpdate();
 
@@ -116,14 +128,14 @@ public class Joueur  implements TableInterface {
 
     /**
      * Method   : setScore
-     * Params   : score(Int)
+     * Params   : score(Integer)
      * Return   : None
      *
      * Def      : Setter > score
      *
      * @param score
      */
-    public void setScore(int score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 
@@ -142,14 +154,14 @@ public class Joueur  implements TableInterface {
 
     /**
      * Method   : setLevel_game
-     * Params   : level_game(Int)
+     * Params   : level_game(Integer)
      * Return   : None
      *
      * Def      : Setter > level_game
      *
      * @param level_game
      */
-    public void setLevel_game(int level_game) {
+    public void setLevel_game(Integer level_game) {
         this.level_game = level_game;
     }
 
@@ -175,7 +187,7 @@ public class Joueur  implements TableInterface {
      *
      * @return
      */
-    public int getScore() {
+    public Integer getScore() {
         return score;
     }
 
@@ -201,7 +213,7 @@ public class Joueur  implements TableInterface {
      *
      * @return
      */
-    public int getLevel_game() {
+    public Integer getLevel_game() {
         return level_game;
     }
 }

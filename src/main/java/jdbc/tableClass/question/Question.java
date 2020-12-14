@@ -1,5 +1,6 @@
 package jdbc.tableClass.question;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type;
 import jdbc.tableClass.Interfaces.TableInterface;
 
 import java.sql.*;
@@ -25,13 +26,13 @@ public class Question implements TableInterface {
     /**
      * Variables
      */
-    private int idquestion;//Id de l'objet question
+    private Integer idquestion;//Id de l'objet question
     private String indice;
-    private int positionreponse;
+    private Integer positionreponse;
     private String description_question;
-    private int level_game;
+    private Integer level_game;
     private Categorie_question categorie_question;
-    private int idreponse;
+    private Integer idreponse;
 
     /**
      * Method   : Question
@@ -40,13 +41,13 @@ public class Question implements TableInterface {
      * Def      : Init method
      */
     public Question(
-            int idquestion,
+            Integer idquestion,
             String indice,
-            int positionreponse,
+            Integer positionreponse,
             String description_question,
-            int level_game,
+            Integer level_game,
             Categorie_question categorie_question,
-            int idreponse
+            Integer idreponse
     ){
         this.idquestion = idquestion;
         this.indice = indice;
@@ -75,10 +76,27 @@ public class Question implements TableInterface {
 
         PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         pst.setInt(1, this.idquestion);
-        pst.setString(2, this.indice);
-        pst.setInt(3, this.positionreponse);
-        pst.setString(4, this.description_question);
-        pst.setInt(5, this.level_game);
+        if(this.indice == null){
+            pst.setNull(2, Types.VARCHAR);
+        }else {
+            pst.setString(2, this.indice);
+        }
+        if(this.positionreponse == null){
+            pst.setNull(3, Types.INTEGER);
+        }else {
+            pst.setInt(3, this.positionreponse);
+        }
+        if(this.description_question == null){
+            pst.setNull(4, Types.VARCHAR);
+        }else {
+            pst.setString(4, this.description_question);
+        }
+        if(this.level_game == null){
+            pst.setNull(5, Types.VARCHAR);
+        }else {
+            pst.setInt(5, this.level_game);
+        }
+
         pst.setInt(6, this.idreponse);
 
         int rowAffected = pst.executeUpdate();
@@ -146,13 +164,13 @@ public class Question implements TableInterface {
     /**
      * Method   : getIdquestion
      * Params   : None
-     * Return   : int
+     * Return   : Integer
      *
      * Def      : Getter > idquestion
      *
      * @return
      */
-    public int getIdquestion() {
+    public Integer getIdquestion() {
         return idquestion;
     }
 
@@ -172,13 +190,13 @@ public class Question implements TableInterface {
     /**
      * Method   : getPositionreponse
      * Params   : None
-     * Return   : int
+     * Return   : Integer
      *
      * Def      : Getter > positionreponse
      *
      * @return
      */
-    public int getPositionreponse() {
+    public Integer getPositionreponse() {
         return positionreponse;
     }
 
@@ -198,13 +216,13 @@ public class Question implements TableInterface {
     /**
      * Method   : getLevel_game
      * Params   : None
-     * Return   : int
+     * Return   : Integer
      *
      * Def      : Getter > level_game
      *
      * @return
      */
-    public int getLevel_game() {
+    public Integer getLevel_game() {
         return level_game;
     }
 
@@ -222,13 +240,13 @@ public class Question implements TableInterface {
     /**
      * Method   : getIdreponse
      * Params   : None
-     * Return   : int
+     * Return   : Integer
      *
      * Def      : Getter > idreponse
      *
      * @return
      */
-    public int getIdreponse() {
+    public Integer getIdreponse() {
         return idreponse;
     }
 
@@ -247,14 +265,14 @@ public class Question implements TableInterface {
 
     /**
      * Method   : setPositionreponse
-     * Params   : positionreponse(Int)
+     * Params   : positionreponse(Integer)
      * Return   : None
      *
      * Def      : Setter > positionreponse
      *
      * @param positionreponse
      */
-    public void setPositionreponse(int positionreponse) {
+    public void setPositionreponse(Integer positionreponse) {
         this.positionreponse = positionreponse;
     }
 
@@ -273,14 +291,14 @@ public class Question implements TableInterface {
 
     /**
      * Method   : setLevel_game
-     * Params   : level_game(Int)
+     * Params   : level_game(Integer)
      * Return   : None
      *
      * Def      : Setter > level_game
      *
      * @param level_game
      */
-    public void setLevel_game(int level_game) {
+    public void setLevel_game(Integer level_game) {
         this.level_game = level_game;
     }
 
@@ -297,14 +315,14 @@ public class Question implements TableInterface {
 
     /**
      * Method   : setIdreponse
-     * Params   : idreponse(Int)
+     * Params   : idreponse(Integer)
      * Return   : None
      *
      * Def      : Setter > idreponse
      *
      * @param idreponse
      */
-    public void setIdreponse(int idreponse) {
+    public void setIdreponse(Integer idreponse) {
         this.idreponse = idreponse;
     }
 }

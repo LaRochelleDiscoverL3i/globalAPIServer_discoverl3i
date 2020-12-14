@@ -29,13 +29,21 @@ public class QuestionJoueurToJson implements ToJsonInterface {
     public JsonObject toJson(Object obj) throws Exception {
         JsonObject result = new JsonObject();
 
-        if(obj.getClass() == QuestionJoueur.class){
+        if(obj.getClass() == QuestionJoueur.class) {
             QuestionJoueur questionJoueur = (QuestionJoueur) obj;
 
             result.put("idquestion", questionJoueur.getIdquestion());
             result.put("idjoueur", questionJoueur.getIdjoueur());
-            result.put("nbre_tentative", questionJoueur.getNbre_tentative());
-            result.put("booleen", questionJoueur.getBooleen());
+            if (questionJoueur.getNbre_tentative() == null) {
+                result.putNull("getNbre_tentative");
+            }else{
+                result.put("nbre_tentative", questionJoueur.getNbre_tentative());
+            }
+            if (questionJoueur.getNbre_tentative() == null) {
+                result.putNull("getNbre_tentative");
+            }else {
+                result.put("getNbre_tentative", questionJoueur.getBooleen());
+            }
 
             LOGGER.info("[QuestionJoueurToJson] Conversion QuestionJoueur to Json Object - (IdQuestion, IdJoueur) : ("+questionJoueur.getIdquestion()+", "+questionJoueur.getIdjoueur()+")");
         }

@@ -95,11 +95,11 @@ public class QuestionHandler {
         try {
             Question question = new Question(
                     Integer.parseInt(routingContext.request().getParam("idquestion")),
-                    routingContext.request().getParam("indice"),
-                    Integer.parseInt(routingContext.request().getParam("positionreponse")),
-                    routingContext.request().getParam("description_question"),
-                    Integer.parseInt(routingContext.request().getParam("level_game")),
-                    Question.Categorie_question.valueOf(routingContext.request().getParam("categorie_question")),
+                    !routingContext.request().params().contains("indice") ? null : routingContext.request().getParam("indice"),
+                    !routingContext.request().params().contains("positionreponse") ? null : Integer.parseInt(routingContext.request().getParam("positionreponse")),
+                    !routingContext.request().params().contains("description_question") ? null : routingContext.request().getParam("description_question"),
+                    !routingContext.request().params().contains("level_game") ? null : Integer.parseInt(routingContext.request().getParam("level_game")),
+                    !routingContext.request().params().contains("categorie_question") ? null : Question.Categorie_question.valueOf(routingContext.request().getParam("categorie_question")),
                     Integer.parseInt(routingContext.request().getParam("idreponse"))
             );
 
@@ -199,12 +199,12 @@ public class QuestionHandler {
         try {
             Question question = new Question(
                     Integer.parseInt(routingContext.request().getParam("idquestion")),
-                    routingContext.request().getParam("indice").isEmpty() ? null : routingContext.request().getParam("indice"),
-                    routingContext.request().getParam("positionreponse").isEmpty() ? null : Integer.parseInt(routingContext.request().getParam("positionreponse")),
-                    routingContext.request().getParam("description_question").isEmpty() ? null : routingContext.request().getParam("description_question"),
-                    routingContext.request().getParam("level_game").isEmpty() ? null : Integer.parseInt(routingContext.request().getParam("level_game")),
-                    routingContext.request().getParam("categorie_question").isEmpty() ? null : Question.Categorie_question.valueOf(routingContext.request().getParam("categorie_question")),
-                    routingContext.request().getParam("idreponse").isEmpty() ? null : Integer.parseInt(routingContext.request().getParam("idreponse"))
+                    !routingContext.request().params().contains("indice") ? null : routingContext.request().getParam("indice"),
+                    !routingContext.request().params().contains("positionreponse") ? null : Integer.parseInt(routingContext.request().getParam("positionreponse")),
+                    !routingContext.request().params().contains("description_question") ? null : routingContext.request().getParam("description_question"),
+                    !routingContext.request().params().contains("level_game") ? null : Integer.parseInt(routingContext.request().getParam("level_game")),
+                    !routingContext.request().params().contains("categorie_question") ? null : Question.Categorie_question.valueOf(routingContext.request().getParam("categorie_question")),
+                    !routingContext.request().params().contains("idreponse") ? null : Integer.parseInt(routingContext.request().getParam("idreponse"))
             );
 
             Boolean result = questionJDBC.deleteQuestion(question);

@@ -11,8 +11,8 @@ public class ScanJoueur implements TableInterface {
      * Variables
      */
     private String idjoueur;
-    private int idreponse;
-    private int idquestion;
+    private Integer idreponse;
+    private Integer idquestion;
     private Boolean booleen_question;
 
     /**

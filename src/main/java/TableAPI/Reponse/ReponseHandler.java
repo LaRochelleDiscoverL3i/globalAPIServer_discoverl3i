@@ -95,7 +95,7 @@ public class ReponseHandler {
         try {
             Reponse reponse = new Reponse(
                     Integer.parseInt(routingContext.request().getParam("idreponse")),
-                    routingContext.request().getParam("description_reponse"),
+                    !routingContext.request().params().contains("description_reponse") ? null : routingContext.request().getParam("description_reponse"),
                     Integer.parseInt(routingContext.request().getParam("idquestion"))
             );
 
@@ -191,8 +191,8 @@ public class ReponseHandler {
         try {
             Reponse reponse = new Reponse(
                     Integer.parseInt(routingContext.request().getParam("idreponse")),
-                    routingContext.request().getParam("description_reponse").isEmpty() ? null : routingContext.request().getParam("description_reponse"),
-                    routingContext.request().getParam("idquestion").isEmpty() ? null : Integer.parseInt(routingContext.request().getParam("idquestion"))
+                    !routingContext.request().params().contains("description_reponse") ? null : routingContext.request().getParam("description_reponse"),
+                    Integer.parseInt(routingContext.request().getParam("idquestion"))
             );
 
             Boolean result = reponseJDBC.deleteReponse(reponse);

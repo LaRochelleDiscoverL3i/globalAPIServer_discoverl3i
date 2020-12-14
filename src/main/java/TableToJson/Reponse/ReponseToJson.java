@@ -32,7 +32,11 @@ public class ReponseToJson implements ToJsonInterface {
             Reponse reponse = (Reponse) obj;
 
             result.put("idreponse", reponse.getIdreponse());
-            result.put("description_reponse", reponse.getDescription_reponse());
+            if(reponse.getDescription_reponse() == null){
+                result.putNull("description_reponse");
+            }else {
+                result.put("description_reponse", reponse.getDescription_reponse());
+            }
             result.put("idquestion", reponse.getIdquestion());
 
             LOGGER.info("[ReponseToJson] Conversion Reponse to Json Object - IdReponse : "+reponse.getIdreponse());

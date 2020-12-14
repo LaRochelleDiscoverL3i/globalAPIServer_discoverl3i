@@ -96,8 +96,8 @@ public class QuestionJoueurHandler {
             QuestionJoueur questionJoueur = new QuestionJoueur(
                     Integer.parseInt(routingContext.request().getParam("idquestion")),
                     routingContext.request().getParam("idjoueur"),
-                    Integer.parseInt(routingContext.request().getParam("nbre_tentative")),
-                    Boolean.valueOf(routingContext.request().getParam("booleen"))
+                    !routingContext.request().params().contains("nbre_tentative") ? null : Integer.parseInt(routingContext.request().getParam("nbre_tentative")),
+                    !routingContext.request().params().contains("booleen") ? null : Boolean.valueOf(routingContext.request().getParam("booleen"))
             );
 
             Boolean result = questionJoueurJDBC.insertQuestionJoueur(questionJoueur);
@@ -194,8 +194,8 @@ public class QuestionJoueurHandler {
             QuestionJoueur questionJoueur = new QuestionJoueur(
                     Integer.parseInt(routingContext.request().getParam("idquestion")),
                     routingContext.request().getParam("idjoueur"),
-                    routingContext.request().getParam("nbre_tentative").isEmpty() ? null : Integer.parseInt(routingContext.request().getParam("nbre_tentative")),
-                    routingContext.request().getParam("booleen").isEmpty() ? null : Boolean.valueOf(routingContext.request().getParam("booleen"))
+                    !routingContext.request().params().contains("nbre_tentative") ? null : Integer.parseInt(routingContext.request().getParam("nbre_tentative")),
+                    !routingContext.request().params().contains("booleen") ? null : Boolean.valueOf(routingContext.request().getParam("booleen"))
             );
 
             Boolean result = questionJoueurJDBC.deleteQuestionJoueur(questionJoueur);
