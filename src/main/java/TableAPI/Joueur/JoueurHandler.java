@@ -65,7 +65,7 @@ public class JoueurHandler {
     public static void addItem(RoutingContext routingContext) {
         try {
             Joueur joueur = new Joueur(
-                    Integer.parseInt(routingContext.request().getParam("idjoueur")),
+                    routingContext.request().getParam("idjoueur"),
                     Integer.parseInt(routingContext.request().getParam("score")),
                     Timestamp.valueOf(routingContext.request().getParam("temps_test")),
                     Integer.parseInt(routingContext.request().getParam("level_game"))
@@ -114,7 +114,7 @@ public class JoueurHandler {
     public static void updateItem(RoutingContext routingContext) {
         try {
             Joueur joueur = new Joueur(
-                    Integer.parseInt(routingContext.request().getParam("idjoueur")),
+                    routingContext.request().getParam("idjoueur"),
                     Integer.parseInt(routingContext.request().getParam("score")),
                     Timestamp.valueOf(routingContext.request().getParam("temps_test")),
                     Integer.parseInt(routingContext.request().getParam("level_game"))
@@ -163,7 +163,7 @@ public class JoueurHandler {
     public static void deleteItem(RoutingContext routingContext) {
         try {
             Joueur joueur = new Joueur(
-                    Integer.parseInt(routingContext.request().getParam("idjoueur")),
+                    routingContext.request().getParam("idjoueur"),
                     routingContext.request().getParam("score").isEmpty() ? null : Integer.parseInt(routingContext.request().getParam("score") ),
                     routingContext.request().getParam("temps_test").isEmpty() ? null : Timestamp.valueOf(routingContext.request().getParam("temps_test")),
                     routingContext.request().getParam("level_game").isEmpty() ? null : Integer.parseInt(routingContext.request().getParam("level_game"))

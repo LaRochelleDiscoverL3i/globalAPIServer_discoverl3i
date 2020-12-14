@@ -15,18 +15,18 @@ public class Joueur  implements TableInterface {
     /**
      * Variables
      */
-    private int idjoueur;//Id de l'objet joueur
+    private String idjoueur;//Id de l'objet joueur
     private int score;
     private Timestamp temps_test;
     private int level_game;
 
     /**
      * Method   : Joueur
-     * Params   : idjoueur(Int), score(Int), temps_test(Timestamp), level_game(Int)
+     * Params   : idjoueur(String), score(Int), temps_test(Timestamp), level_game(Int)
      * Return   : None
      * Def      : Init method
      */
-    public Joueur(int idjoueur, int score, Timestamp temps_test, int level_game){
+    public Joueur(String idjoueur, int score, Timestamp temps_test, int level_game){
         this.idjoueur = idjoueur;
         this.score = score;
         this.temps_test = temps_test;
@@ -50,7 +50,7 @@ public class Joueur  implements TableInterface {
         query += " VALUES (?, ?, ?, ?)";
 
         PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-        pst.setInt(1, this.idjoueur);
+        pst.setString(1, this.idjoueur);
         pst.setInt(2, this.score);
         pst.setTimestamp(3, this.temps_test);
         pst.setInt(4, this.level_game);
@@ -81,7 +81,7 @@ public class Joueur  implements TableInterface {
         pst.setInt(1, this.score);
         pst.setTimestamp(2, this.temps_test);
         pst.setInt(3, this.level_game);
-        pst.setInt(4, this.idjoueur);
+        pst.setString(4, this.idjoueur);
 
         int rowAffected = pst.executeUpdate();
 
@@ -104,7 +104,7 @@ public class Joueur  implements TableInterface {
         String query = "DELETE FROM joueur WHERE idjoueur = ?";
 
         PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-        pst.setInt(1, this.idjoueur);
+        pst.setString(1, this.idjoueur);
         int rowAffected = pst.executeUpdate();
 
         return (rowAffected == 1) ? true : false;
@@ -156,13 +156,13 @@ public class Joueur  implements TableInterface {
     /**
      * Method   : getIdjoueur
      * Params   : None
-     * Return   : int
+     * Return   : String
      *
      * Def      : Getter > idjoueur
      *
      * @return
      */
-    public int getIdjoueur() {
+    public String getIdjoueur() {
         return idjoueur;
     }
 

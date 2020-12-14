@@ -63,7 +63,7 @@ public class JoueurJDBC {
 
         while(rs.next()){
             Joueur jo = new Joueur(
-                    rs.getInt("idjoueur"), rs.getInt("score"), rs.getTimestamp("temps_test"), rs.getInt("level_game")
+                    rs.getString("idjoueur"), rs.getInt("score"), rs.getTimestamp("temps_test"), rs.getInt("level_game")
             );
 
             joueurs.add(jo);
