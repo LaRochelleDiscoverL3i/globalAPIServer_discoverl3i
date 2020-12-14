@@ -1,4 +1,4 @@
-package LinkOtherAgents.Observer;
+package LinkOtherAgents.Analyste;
 
 import LinkOtherAgents.Interfaces.AgentsAPIInterface;
 import io.vertx.ext.web.Router;
@@ -10,7 +10,7 @@ import io.vertx.ext.web.Router;
  *
  * Def      : Classe de gestion des routes de l'agent Observer
  */
-public class ObserverAPI implements AgentsAPIInterface {
+public class AnalysteAPI implements AgentsAPIInterface {
 
     /**
      * Method   : getAllRoutes
@@ -44,8 +44,7 @@ public class ObserverAPI implements AgentsAPIInterface {
      */
     @Override
     public Router path_get(Router router){
-        router.get("/client_chercheur/:joueur").handler(ObserverHandler::observer_get_chercheur);
-        router.get("/client_analyste/:joueur/:type").handler(ObserverHandler::observer_get_analyse);
+        router.get("/client_curiosite/:joueur").handler(AnalysteHandler::analyste_get_curiosite);
         return router;
     }
 
@@ -60,8 +59,7 @@ public class ObserverAPI implements AgentsAPIInterface {
      */
     @Override
     public Router path_post(Router router){
-        router.get("/client_scan").handler(ObserverHandler::observer_post_scan);
-        router.get("/client_reponse").handler(ObserverHandler::observer_post_reponse);
+        router.post("/clien_createjoueur").handler(AnalysteHandler::analyste_post_creation);
         return router;
     }
 

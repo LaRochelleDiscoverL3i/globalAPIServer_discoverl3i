@@ -138,16 +138,16 @@ public class ObserverHandler {
 
             String url_observer = agents_config.getProperty("observer_url");
             int port_observer = Integer.valueOf(agents_config.getProperty("observer_port"));
-            String requestUrl = "/reponse";
+            String requestUrl = "/scan";
 
             final Vertx vertx = Vertx.vertx();
             WebClient client = WebClient.create(vertx);
 
             client.post(port_observer, url_observer, requestUrl).sendJsonObject(
                     new JsonObject()
-                        .put("question", agents_config.getProperty("question"))
-                        .put("chercheur", agents_config.getProperty("chercheur"))
-                        .put("joueur", agents_config.getProperty("joueur"))
+                        .put("question", routingContext.request().getParam("question"))
+                        .put("chercheur", routingContext.request().getParam("chercheur"))
+                        .put("joueur", routingContext.request().getParam("joueur"))
             ).onSuccess(
                     response -> {
                         LOGGER.info("[ObserverHandler] Method : observer_get_analyse - onSuccess return");
@@ -198,9 +198,9 @@ public class ObserverHandler {
 
             client.post(port_observer, url_observer, requestUrl).sendJsonObject(
                     new JsonObject()
-                        .put("question", agents_config.getProperty("question"))
-                        .put("reponse", agents_config.getProperty("chercheur"))
-                        .put("joueur", agents_config.getProperty("joueur"))
+                        .put("question", routingContext.request().getParam("question"))
+                        .put("reponse", routingContext.request().getParam("chercheur"))
+                        .put("joueur", routingContext.request().getParam("joueur"))
             ).onSuccess(
                     response -> {
                         LOGGER.info("[ObserverHandler] Method : observer_get_analyse - onSuccess return");
