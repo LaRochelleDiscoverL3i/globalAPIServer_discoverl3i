@@ -6,7 +6,7 @@ Java application to create an API to centralize queries
 ## Example
 ```java
     @Override
-    public void start() throws Exception {
+public void start() throws Exception {
         LOGGER.info("[example.mainAPIServer] Start server !");
 
         //Create Route for Vertx
@@ -16,9 +16,9 @@ Java application to create an API to centralize queries
         router.get("/api/example/name/:name").handler(example.ExampleRoute::getOneName);
         //Start server
         vertx.createHttpServer()
-                .requestHandler(router)
-                .listen(8080);
-    }
+        .requestHandler(router)
+        .listen(8080);
+        }
 ```
 
 When you run the example, the server builds two GET routes.
@@ -49,36 +49,40 @@ Each package has a specific role :
 
 ## Routes
 
-| Object          | URL               | Type | Action                       | Return    |
-|-----------------|-------------------|------|------------------------------|-----------|
-|                 |                   |      |                              |           |
-| Joueur          | /joueurs          | GET  | Return all joueurs           | JsonArray |
-| Joueur          | /joueur           | POST | Add new Joueur               | Json      |
-| Joueur          | /joueurs          | PUT  | Update Joueur                | Json      |
-| Joueur          | /joueur           | DEL  | Delete Joueur                | Json      |
-|                 |                   |      |                              |           |
-| Question        | /questions        | GET  | Return all questions         | JsonArray |
-| Question        | /question         | POST | Add new Question             | Json      |
-| Question        | /question         | PUT  | Update Question              | Json      |
-| Question        | /question         | DEL  | Delete Question              | Json      |
-|                 |                   |      |                              |           |
-| Question_Joueur | /questionsjoueurs | GET  | Return all questions_joueurs | JsonArray |
-| Question_Joueur | /questionjoueur   | POST | Add new Question_Joueur      | Json      |
-| Question_Joueur | /questionjoueur   | PUT  | Update Question_Joueur       | Json      |
-| Question_Joueur | /questionjoueur   | DEL  | Delete Question_Joueur       | Json      |
-|                 |                   |      |                              |           |
-| Reponse         | /reponses         | GET  | Return all reponses          | JsonArray |
-| Reponse         | /reponse          | POST | Add new Reponse              | Json      |
-| Reponse         | /reponse          | PUT  | Update Reponse               | Json      |
-| Reponse         | /reponse          | DEL  | Delete Reponse               | Json      |
-|                 |                   |      |                              |           |
-| Scan_Joueur     | /scansjoueur      | GET  | Return all Scans Joueur      | JsonArray |
-| Scan_Joueur     | /scanjoueur       | POST | Add new Scan Joueur          | Json      |
-| Scan_Joueur     | /scanjoueur       | PUT  | Update Scan Joueur           | Json      |
-| Scan_Joueur     | /scanjoueur       | DEL  | Delete Scan Joueur           | Json      |
+| Object          | URL                                          | Type | Action                       | Return    |
+|-----------------|----------------------------------------------|------|------------------------------|-----------|
+| Joueur          | /joueurs                                     | GET  | Return all joueurs           | JsonArray |
+| Joueur          | /joueur/:idjoueur                            | GET  | Return Joueur by ID          | Json      |
+| Joueur          | /joueur                                      | POST | Add new Joueur               | Json      |
+| Joueur          | /joueurs                                     | PUT  | Update Joueur                | Json      |
+| Joueur          | /joueur                                      | DEL  | Delete Joueur                | Json      |
+|                 |                                              |      |                              |           |
+| Question        | /questions                                   | GET  | Return all questions         | JsonArray |
+| Question        | /question/:idquestion                        | GET  | Return Question by ID        | Json      |
+| Question        | /question                                    | POST | Add new Question             | Json      |
+| Question        | /question                                    | PUT  | Update Question              | Json      |
+| Question        | /question                                    | DEL  | Delete Question              | Json      |
+|                 |                                              |      |                              |           |
+| Question_Joueur | /questionsjoueurs                            | GET  | Return all questions_joueurs | JsonArray |
+| Question_Joueur | /questionjoueur/:idjoueur/:idquestion        | GET  | Return Question_Joueur by id | Json      |
+| Question_Joueur | /questionjoueur                              | POST | Add new Question_Joueur      | Json      |
+| Question_Joueur | /questionjoueur                              | PUT  | Update Question_Joueur       | Json      |
+| Question_Joueur | /questionjoueur                              | DEL  | Delete Question_Joueur       | Json      |
+|                 |                                              |      |                              |           |
+| Reponse         | /reponses                                    | GET  | Return all reponses          | JsonArray |
+| Reponse         | /reponse/:idreponse                          | GET  | Return Reponse by ID         | Json      |
+| Reponse         | /reponse                                     | POST | Add new Reponse              | Json      |
+| Reponse         | /reponse                                     | PUT  | Update Reponse               | Json      |
+| Reponse         | /reponse                                     | DEL  | Delete Reponse               | Json      |
+|                 |                                              |      |                              |           |
+| Scan_Joueur     | /scansjoueur                                 | GET  | Return all Scans Joueur      | JsonArray |
+| Scan_Joueur     | /scanjoueur/:idjoueur/:idreponse/:idquestion | GET  | Return Scan_joueur by ID     | Json      |
+| Scan_Joueur     | /scanjoueur                                  | POST | Add new Scan Joueur          | Json      |
+| Scan_Joueur     | /scanjoueur                                  | PUT  | Update Scan Joueur           | Json      |
+| Scan_Joueur     | /scanjoueur                                  | DEL  | Delete Scan Joueur           | Json      |
 
 ## Table Objects
-### Joueurs 
+### Joueurs
 ```java
     /**
      * Variables
@@ -119,7 +123,7 @@ Each package has a specific role :
      * Variables
      */
     private int idquestion;
-    private int idjoueur;
+    private String idjoueur;
     private int nbre_tentative;
     private Boolean booleen;
 ```
@@ -137,10 +141,10 @@ Each package has a specific role :
 ### Scans Joueurs
 ```java
     /**
-     * Variables
-     */
-    private int idjoueur;
-    private int idreponse;
-    private int idquestion;
-    private Boolean booleen_question;
+ * Variables
+ */
+private String idjoueur;
+private int idreponse;
+private int idquestion;
+private Boolean booleen_question;
 ```
