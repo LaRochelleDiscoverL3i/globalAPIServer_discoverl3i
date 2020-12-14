@@ -58,6 +58,7 @@ public class QuestionJoueurAPI {
      */
     private Router addPostRoutes(Router router) {
         router.post("/questionjoueur").handler(QuestionJoueurHandler::addItem);
+        router.post("/questionjoueur/:idjoueur/:idquestion").handler(QuestionJoueurHandler::addItem);
         return router;
     }
 

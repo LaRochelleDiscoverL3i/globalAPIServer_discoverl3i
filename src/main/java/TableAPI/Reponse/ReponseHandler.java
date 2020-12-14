@@ -6,6 +6,7 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.RoutingContext;
+import jdbc.tableClass.joueur.Joueur;
 import jdbc.tableClass.reponse.Reponse;
 import jdbc.tableClass.reponse.ReponseJDBC;
 import java.util.ArrayList;
@@ -58,6 +59,27 @@ public class ReponseHandler {
                     .setStatusCode(500)
                     .putHeader("content-type", "application/json")
                     .end(Json.encodePrettily(jsonResponse));
+        }
+    }
+
+    /**
+     * Method   : getItemById
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête GET by ID
+     *
+     * @param routingContext
+     */
+    public static void getItemById(RoutingContext routingContext) {
+        try {
+            Reponse joueur = reponseJDBC.getReponseById(Integer.valueOf(routingContext.request().getParam("idreponse")));
+
+            routingContext.response()
+                    .setStatusCode(200)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(rtj.toJson(joueur)));
+        }catch (Exception e){
+            LOGGER.warn("[JoueurHandler] Exception error - getAllItems : "+e.getMessage());
         }
     }
 

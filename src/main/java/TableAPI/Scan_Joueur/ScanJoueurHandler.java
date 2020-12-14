@@ -6,6 +6,7 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.RoutingContext;
+import jdbc.tableClass.joueur.Joueur;
 import jdbc.tableClass.scan_joueur.ScanJoueur;
 import jdbc.tableClass.scan_joueur.ScanJoueurJDBC;
 import java.util.ArrayList;
@@ -62,6 +63,27 @@ public class ScanJoueurHandler {
     }
 
     /**
+     * Method   : getItemById
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête GET by ID
+     *
+     * @param routingContext
+     */
+    public static void getItemById(RoutingContext routingContext) {
+        try {
+            ScanJoueur joueur = scanJoueurJDBC.getScanJoueurById(routingContext.request().getParam("idjoueur"), Integer.valueOf(routingContext.request().getParam("idreponse")), Integer.valueOf(routingContext.request().getParam("idquestion")));
+
+            routingContext.response()
+                    .setStatusCode(200)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(cstj.toJson(joueur)));
+        }catch (Exception e){
+            LOGGER.warn("[JoueurHandler] Exception error - getAllItems : "+e.getMessage());
+        }
+    }
+
+    /**
      * Method   : addItem
      * Params   : routingContext(RoutingContext)
      * Return   : None
@@ -72,7 +94,7 @@ public class ScanJoueurHandler {
     public static void addItem(RoutingContext routingContext) {
         try {
             ScanJoueur scanJoueur = new ScanJoueur(
-                    Integer.parseInt(routingContext.request().getParam("idjoueur")),
+                    routingContext.request().getParam("idjoueur"),
                     Integer.parseInt(routingContext.request().getParam("idreponse")),
                     Integer.parseInt(routingContext.request().getParam("idquestion")),
                     Boolean.valueOf(routingContext.request().getParam("booleen_question"))
@@ -121,7 +143,7 @@ public class ScanJoueurHandler {
     public static void updateItem(RoutingContext routingContext) {
         try {
             ScanJoueur scanJoueur = new ScanJoueur(
-                    Integer.parseInt(routingContext.request().getParam("idjoueur")),
+                    routingContext.request().getParam("idjoueur"),
                     Integer.parseInt(routingContext.request().getParam("idreponse")),
                     Integer.parseInt(routingContext.request().getParam("idquestion")),
                     Boolean.valueOf(routingContext.request().getParam("booleen_question"))
@@ -170,7 +192,7 @@ public class ScanJoueurHandler {
     public static void deleteItem(RoutingContext routingContext) {
         try {
             ScanJoueur scanJoueur = new ScanJoueur(
-                    Integer.parseInt(routingContext.request().getParam("idjoueur")),
+                    routingContext.request().getParam("idjoueur"),
                     Integer.parseInt(routingContext.request().getParam("idreponse")),
                     Integer.parseInt(routingContext.request().getParam("idquestion")),
                     routingContext.request().getParam("booleen_question").isEmpty() ? null : Boolean.valueOf(routingContext.request().getParam("booleen_question"))

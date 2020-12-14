@@ -6,6 +6,7 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.RoutingContext;
+import jdbc.tableClass.joueur.Joueur;
 import jdbc.tableClass.question_joueur.QuestionJoueur;
 import jdbc.tableClass.question_joueur.QuestionJoueurJDBC;
 import java.util.ArrayList;
@@ -62,6 +63,27 @@ public class QuestionJoueurHandler {
     }
 
     /**
+     * Method   : getItemById
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête GET by ID
+     *
+     * @param routingContext
+     */
+    public static void getItemById(RoutingContext routingContext) {
+        try {
+            QuestionJoueur joueur = questionJoueurJDBC.getQuestionJoueurById(routingContext.request().getParam("idjoueur"), Integer.valueOf(routingContext.request().getParam("idquestion")));
+
+            routingContext.response()
+                    .setStatusCode(200)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(qjtj.toJson(joueur)));
+        }catch (Exception e){
+            LOGGER.warn("[JoueurHandler] Exception error - getAllItems : "+e.getMessage());
+        }
+    }
+
+    /**
      * Method   : addItem
      * Params   : routingContext(RoutingContext)
      * Return   : None
@@ -73,7 +95,7 @@ public class QuestionJoueurHandler {
         try {
             QuestionJoueur questionJoueur = new QuestionJoueur(
                     Integer.parseInt(routingContext.request().getParam("idquestion")),
-                    Integer.parseInt(routingContext.request().getParam("idjoueur")),
+                    routingContext.request().getParam("idjoueur"),
                     Integer.parseInt(routingContext.request().getParam("nbre_tentative")),
                     Boolean.valueOf(routingContext.request().getParam("booleen"))
             );
@@ -122,7 +144,7 @@ public class QuestionJoueurHandler {
         try {
             QuestionJoueur questionJoueur = new QuestionJoueur(
                     Integer.parseInt(routingContext.request().getParam("idquestion")),
-                    Integer.parseInt(routingContext.request().getParam("idjoueur")),
+                    routingContext.request().getParam("idjoueur"),
                     Integer.parseInt(routingContext.request().getParam("nbre_tentative")),
                     Boolean.valueOf(routingContext.request().getParam("booleen"))
             );
@@ -171,7 +193,7 @@ public class QuestionJoueurHandler {
         try {
             QuestionJoueur questionJoueur = new QuestionJoueur(
                     Integer.parseInt(routingContext.request().getParam("idquestion")),
-                    Integer.parseInt(routingContext.request().getParam("idjoueur")),
+                    routingContext.request().getParam("idjoueur"),
                     routingContext.request().getParam("nbre_tentative").isEmpty() ? null : Integer.parseInt(routingContext.request().getParam("nbre_tentative")),
                     routingContext.request().getParam("booleen").isEmpty() ? null : Boolean.valueOf(routingContext.request().getParam("booleen"))
             );

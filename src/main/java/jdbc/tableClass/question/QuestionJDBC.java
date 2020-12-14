@@ -1,6 +1,7 @@
 package jdbc.tableClass.question;
 
 import jdbc.PostgresJDBC;
+import jdbc.tableClass.joueur.Joueur;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -78,6 +79,43 @@ public class QuestionJDBC {
 
         stm.close();
         return questions;
+    }
+
+    /**
+     * Method   : getQuestionById
+     * Params   : idquestion(int)
+     * Return   : Question
+     *
+     * Def      : Method qui permet de retourner une question par son id dans la BDD
+     *
+     * @return
+     * @throws SQLException
+     */
+    public Question getQuestionById(int idquestion) throws SQLException {
+        if(con == null) this.connectionBDD();
+        Statement stm = con.createStatement();
+
+        String query = "SELECT * FROM question WHERE idquestion = "+idquestion+"";
+        System.out.println(query);
+
+        ResultSet rs = stm.executeQuery(query);
+
+        Question result = null;
+
+        while(rs.next()) {
+            result = new Question(
+                    rs.getInt("idquestion"),
+                    rs.getString("indice"),
+                    rs.getInt("positionreponse"),
+                    rs.getString("description_question"),
+                    rs.getInt("level_game"),
+                    Question.Categorie_question.valueOf(rs.getString("categorie_question")),
+                    rs.getInt("idreponse")
+            );
+        }
+
+        stm.close();
+        return result;
     }
 
     /**

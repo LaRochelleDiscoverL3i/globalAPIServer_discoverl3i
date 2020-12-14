@@ -19,17 +19,17 @@ public class QuestionJoueur implements TableInterface {
      * Variables
      */
     private int idquestion;
-    private int idjoueur;
+    private String idjoueur;
     private int nbre_tentative;
     private Boolean booleen;
 
     /**
      * Method   : QuestionJoueur
-     * Params   : idquestion(Int), idjoueur(Int), nbre_tentative(Int), boolean(Boolean)
+     * Params   : idquestion(Int), idjoueur(String), nbre_tentative(Int), boolean(Boolean)
      * Return   : None
      * Def      : Init method
      */
-    public QuestionJoueur(int idquestion, int idjoueur, int nbre_tentative, Boolean booleen){
+    public QuestionJoueur(int idquestion, String idjoueur, int nbre_tentative, Boolean booleen){
         this.idquestion = idquestion;
         this.idjoueur = idjoueur;
         this.nbre_tentative = nbre_tentative;
@@ -55,7 +55,7 @@ public class QuestionJoueur implements TableInterface {
         PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
         pst.setInt(1, this.idquestion);
-        pst.setInt(2, this.idjoueur);
+        pst.setString(2, this.idjoueur);
         pst.setInt(3, this.nbre_tentative);
         pst.setBoolean(4, this.booleen);
 
@@ -85,7 +85,7 @@ public class QuestionJoueur implements TableInterface {
         pst.setInt(1, this.nbre_tentative);
         pst.setBoolean(2, this.booleen);
         pst.setInt(3, this.idquestion);
-        pst.setInt(4, this.idjoueur);
+        pst.setString(4, this.idjoueur);
 
         int rowAffected = pst.executeUpdate();
 
@@ -110,7 +110,7 @@ public class QuestionJoueur implements TableInterface {
         PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
         pst.setInt(1, this.idquestion);
-        pst.setInt(2, this.idjoueur);
+        pst.setString(2, this.idjoueur);
 
         int rowAffected = pst.executeUpdate();
 
@@ -137,13 +137,13 @@ public class QuestionJoueur implements TableInterface {
     /**
      * Method   : getIdjoueur
      * Params   : None
-     * Return   : int
+     * Return   : String
      *
      * Def      : Getter > idjoueur
      *
      * @return
      */
-    public int getIdjoueur() {
+    public String getIdjoueur() {
         return idjoueur;
     }
 

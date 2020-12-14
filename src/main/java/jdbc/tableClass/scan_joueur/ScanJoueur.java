@@ -10,18 +10,18 @@ public class ScanJoueur implements TableInterface {
     /**
      * Variables
      */
-    private int idjoueur;
+    private String idjoueur;
     private int idreponse;
     private int idquestion;
     private Boolean booleen_question;
 
     /**
      * Method   : ScanJoueur
-     * Params   : idjoueur(Int), idreponse(Int), idquestion(Int), booleen_question(Boolean)
+     * Params   : idjoueur(String), idreponse(Int), idquestion(Int), booleen_question(Boolean)
      * Return   : None
      * Def      : Init method
      */
-    public ScanJoueur(int idjoueur, int idreponse, int idquestion, Boolean booleen_question){
+    public ScanJoueur(String idjoueur, int idreponse, int idquestion, Boolean booleen_question){
         this.idjoueur = idjoueur;
         this.idreponse = idreponse;
         this.idquestion = idquestion;
@@ -46,7 +46,7 @@ public class ScanJoueur implements TableInterface {
 
         PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
-        pst.setInt(1, this.idjoueur);
+        pst.setString(1, this.idjoueur);
         pst.setInt(2, this.idreponse);
         pst.setInt(3, this.idquestion);
         pst.setBoolean(4, this.booleen_question);
@@ -75,7 +75,7 @@ public class ScanJoueur implements TableInterface {
         PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
         pst.setBoolean(1, this.booleen_question);
-        pst.setInt(2, this.idjoueur);
+        pst.setString(2, this.idjoueur);
         pst.setInt(3, this.idreponse);
         pst.setInt(4, this.idquestion);
 
@@ -107,13 +107,13 @@ public class ScanJoueur implements TableInterface {
     /**
      * Method   : getIdjoueur
      * Params   : None
-     * Return   : int
+     * Return   : String
      *
      * Def      : Getter > idjoueur
      *
      * @return
      */
-    public int getIdjoueur() {
+    public String getIdjoueur() {
         return idjoueur;
     }
 

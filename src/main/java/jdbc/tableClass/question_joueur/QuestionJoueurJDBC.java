@@ -1,6 +1,7 @@
 package jdbc.tableClass.question_joueur;
 
 import jdbc.PostgresJDBC;
+import jdbc.tableClass.joueur.Joueur;
 import jdbc.tableClass.question.Question;
 
 import java.sql.Connection;
@@ -62,7 +63,7 @@ public class QuestionJoueurJDBC {
 
             QuestionJoueur questionjoueur = new QuestionJoueur(
                     rs.getInt("idquestion"),
-                    rs.getInt("idjoueur"),
+                    rs.getString("idjoueur"),
                     rs.getInt("nbre_tentative"),
                     rs.getBoolean("booleen")
             );
@@ -72,6 +73,40 @@ public class QuestionJoueurJDBC {
 
         stm.close();
         return questionsjoueurs;
+    }
+
+    /**
+     * Method   : getQuestionJoueurById
+     * Params   : idjoueur(String), idquestion(int)
+     * Return   : QuestionJoueur
+     *
+     * Def      : Method qui permet de retourner une questionJoueur par son id dans la BDD
+     *
+     * @return
+     * @throws SQLException
+     */
+    public QuestionJoueur getQuestionJoueurById(String idjoueur, int idquestion) throws SQLException {
+        if(con == null) this.connectionBDD();
+        Statement stm = con.createStatement();
+
+        String query = "SELECT * FROM joueur WHERE idjoueur = '"+idjoueur+"' AND idquestion = "+idquestion;
+        System.out.println(query);
+
+        ResultSet rs = stm.executeQuery(query);
+
+        QuestionJoueur result = null;
+
+        while(rs.next()){
+            result  = new QuestionJoueur(
+                    rs.getInt("idquestion"),
+                    rs.getString("idjoueur"),
+                    rs.getInt("nbre_tentative"),
+                    rs.getBoolean("booleen")
+            );
+        }
+
+        stm.close();
+        return result;
     }
 
     /**

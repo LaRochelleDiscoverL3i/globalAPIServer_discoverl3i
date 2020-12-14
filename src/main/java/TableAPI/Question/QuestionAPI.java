@@ -45,6 +45,7 @@ public class QuestionAPI {
      */
     private Router addGetRoutes(Router router) {
         router.get("/questions").handler(QuestionHandler::getAllItems);
+        router.get("/question/:idquestion").handler(QuestionHandler::getItemById);
         return router;
     }
 

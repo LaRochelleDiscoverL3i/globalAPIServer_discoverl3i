@@ -74,6 +74,37 @@ public class JoueurJDBC {
     }
 
     /**
+     * Method   : getJoueurById
+     * Params   : idjoueur(String)
+     * Return   : Joueur
+     *
+     * Def      : Method qui permet de retourner un joueur par son id dans la BDD
+     *
+     * @return
+     * @throws SQLException
+     */
+    public Joueur getJoueurById(String idjoueur) throws SQLException {
+        if(con == null) this.connectionBDD();
+        Statement stm = con.createStatement();
+
+        String query = "SELECT * FROM joueur WHERE idjoueur = '"+idjoueur+"'";
+        System.out.println(query);
+
+        ResultSet rs = stm.executeQuery(query);
+
+        Joueur result = null;
+
+        while(rs.next()){
+            result = new Joueur(
+                    rs.getString("idjoueur"), rs.getInt("score"), rs.getTimestamp("temps_test"), rs.getInt("level_game")
+            );
+        }
+
+        stm.close();
+        return result;
+    }
+
+    /**
      * Method   : insertJoueur
      * Params   : joueur(Joueur)
      * Return   : Boolean
