@@ -17,6 +17,9 @@ public class AgentsAPI implements AgentsAPIInterface {
     @Override
     public Router getAllRoutes(Router router) {
         router = this.path_get(router);
+        router = this.path_post(router);
+        router = this.path_put(router);
+        router = this.path_del(router);
         return router;
     }
 
@@ -51,6 +54,7 @@ public class AgentsAPI implements AgentsAPIInterface {
      */
     @Override
     public Router path_post(Router router){
+        router.post("/api/create_user").handler(AgentsHandler::agents_post_createUser);
         return router;
     }
 

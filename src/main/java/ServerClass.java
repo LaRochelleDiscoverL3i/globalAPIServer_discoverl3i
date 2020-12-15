@@ -1,3 +1,4 @@
+import LinkOtherAgents.AgentsRoute.AgentsAPI;
 import LinkOtherAgents.Observer.ObserverAPI;
 import TableAPI.Joueur.JoueurAPI;
 import TableAPI.Question.QuestionAPI;
@@ -65,9 +66,9 @@ public class ServerClass extends AbstractVerticle {
         router = scanJoueurAPI.getAllRoutes(router);
 
         //Define route Agents
-        ObserverAPI observerAPI = new ObserverAPI();
+        AgentsAPI agentsAPI = new AgentsAPI();
 
-        router = observerAPI.getAllRoutes(router);
+        router = agentsAPI.getAllRoutes(router);
 
         //Start server
         vertx.createHttpServer()
