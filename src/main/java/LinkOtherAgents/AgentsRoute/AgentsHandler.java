@@ -1,20 +1,15 @@
 package LinkOtherAgents.AgentsRoute;
 
 import LinkOtherAgents.Analyste.Analyste;
-import LinkOtherAgents.Observer.ObserverHandler;
+import LinkOtherAgents.Senariste.Senariste;
 import TableToJson.Joueur.JoueurToJson;
-import io.vertx.core.Vertx;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.RoutingContext;
-import io.vertx.ext.web.client.WebClient;
 import jdbc.tableClass.joueur.Joueur;
 import jdbc.tableClass.joueur.JoueurJDBC;
-
-import java.io.FileInputStream;
-import java.util.Properties;
 
 public class AgentsHandler {
     /**
@@ -46,6 +41,15 @@ public class AgentsHandler {
                     LOGGER.info("[AgentsHandler] Method : agents_post_createUser - send creation to analyste");
                 }catch (Exception e){
                     LOGGER.warn("[AgentsHandler] Method : agents_post_createUser - During send to analyste - Error message : "+e.getMessage());
+                }
+
+                try{
+                    //Check si Didi desire vraiment juste le nom joueur
+                    Senariste senariste = new Senariste();
+                    senariste.senariste_post_addjoueur(jtj.toJson(joueur));
+                    LOGGER.info("[AgentsHandler] Method : agents_post_createUser - send creation to senariste");
+                }catch (Exception e){
+                    LOGGER.warn("[AgentsHandler] Method : agents_post_createUser - During send to senariste - Error message : "+e.getMessage());
                 }
 
                 routingContext.response()
