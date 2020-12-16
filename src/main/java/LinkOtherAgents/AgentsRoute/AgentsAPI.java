@@ -37,6 +37,8 @@ public class AgentsAPI {
      * @return
      */
     public Router path_get(Router router){
+        router.get("/api/curiosite/:idjoueur").handler(AgentsHandler::agents_get_curiosite);
+        router.get("/api/progression/:idjoueur").handler(AgentsHandler::agents_get_progession);
         router.get("/api/questionToAsk/:joueur").handler(AgentsHandler::agents_get_questionToAsk);
         return router;
     }

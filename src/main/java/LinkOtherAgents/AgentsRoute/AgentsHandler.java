@@ -51,6 +51,40 @@ public class AgentsHandler {
     private static PhoneGap phoneGap = new PhoneGap();
     private static Observeur observeur = new Observeur();
 
+    public static void agents_get_curiosite(RoutingContext routingContext) {
+        try {
+
+            String idJoueur = routingContext.request().getParam("idjoueur");
+
+            JsonObject response = observeur.observeur_get_curiosite(idJoueur);
+
+            routingContext.response()
+                    .setStatusCode(200)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(response));
+
+        } catch (Exception e) {
+            LOGGER.warn("[AgentsHandler] Method : agents_get_curiosite - Error message : " + e.getMessage());
+        }
+    }
+
+    public static void agents_get_progession(RoutingContext routingContext) {
+        try {
+
+            String idJoueur = routingContext.request().getParam("idjoueur");
+
+            JsonObject response = observeur.observeur_get_progression(idJoueur);
+
+            routingContext.response()
+                    .setStatusCode(200)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(response));
+
+        } catch (Exception e) {
+            LOGGER.warn("[AgentsHandler] Method : agents_get_curiosite - Error message : " + e.getMessage());
+        }
+    }
+
     public static void agents_get_questionToAsk(RoutingContext routingContext) {
         try {
             String joueurId = routingContext.request().getParam("joueur");
@@ -111,7 +145,14 @@ public class AgentsHandler {
 
         } catch (Exception e) {
             LOGGER.warn("[AgentsHandler] Method : agents_get_questionToAsk - Error message : " + e.getMessage());
+        }
+    }
 
+    public static void agents_post_curiosite(RoutingContext routingContext) {
+        try{
+
+        } catch (Exception e) {
+            LOGGER.warn("[AgentsHandler] Method : agents_post_curiositeagents_get_curiosite - Error message : " + e.getMessage());
         }
     }
 

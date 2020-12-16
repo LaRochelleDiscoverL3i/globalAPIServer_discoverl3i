@@ -48,6 +48,7 @@ Each package has a specific role :
 > mvn clean compile exec:java
 
 ## Routes
+### JDBC Routes
 
 | Object          | URL                                          | Type | Action                       | Return    |
 |-----------------|----------------------------------------------|------|------------------------------|-----------|
@@ -81,8 +82,8 @@ Each package has a specific role :
 | Scan_Joueur     | /scanjoueur                                  | PUT  | Update Scan Joueur           | Json      |
 | Scan_Joueur     | /scanjoueur                                  | DEL  | Delete Scan Joueur           | Json      |
 
-## Table Objects
-### Joueurs
+### Table Objects
+#### Joueurs
 ```java
 private String idjoueur;//Id de l'objet joueur
 private Integer score;
@@ -90,7 +91,7 @@ private Timestamp temps_test;
 private Integer level_game;
 ```
 
-### Questions
+#### Questions
 ```java
 /**
  * Enum
@@ -114,7 +115,7 @@ private Categorie_question categorie_question;
 private Integer idreponse;
 ```
 
-### Questions Joueurs
+#### Questions Joueurs
 ```java
 private Integer idquestion;
 private String idjoueur;
@@ -122,17 +123,27 @@ private Integer nbre_tentative;
 private Boolean booleen;
 ```
 
-### Reponses
+#### Reponses
 ```java
 private Integer idreponse;
 private String description_reponse;
 private Integer idquestion;
 ```
 
-### Scans Joueurs
+#### Scans Joueurs
 ```java
 private String idjoueur;
 private Integer idreponse;
 private Integer idquestion;
 private Boolean booleen_question;
 ```
+
+### Agents Routes
+| URL                        | Type | Content | Action                                                                                                                                 |
+|----------------------------|------|---------|----------------------------------------------------------------------------------------------------------------------------------------|
+| /api/curiosite/:idjoueur   | GET  | None    | Performs a GET query on the observing agent and returns curiosity in response                                                          |
+| /api/progression/:idjoueur | GET  | None    | Performs a GET query on the observing agent and returns progession in response                                                         |
+| /api/questionToAsk/:joueur | GET  | None    | Allows to retrieve a question and send it to the phonegap client                                                                       |
+|                            |      |         |                                                                                                                                        |
+| /api/create_user           | POST |         | Phonegap request for creating a new player based on his name. If the creation is possible we send the information to the other agents. |
+| /api/reponse               | POST |         | Gateway to the observing agent to send him a response                                                                                  |
