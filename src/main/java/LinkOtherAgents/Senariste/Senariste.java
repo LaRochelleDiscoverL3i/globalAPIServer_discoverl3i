@@ -53,4 +53,22 @@ public class Senariste {
             return null;
         }
     }
+
+    public static JsonObject senariste_post_curiosite(JsonObject content){
+        try{
+            return null;
+        }catch (Exception e){
+            LOGGER.warn("[Analyste] Method : senariste_post_curiosite - Error message : "+e.getMessage());
+            return null;
+        }
+    }
+
+    public static JsonObject senariste_post_pogression(JsonObject content){
+        try{
+            return null;
+        }catch (Exception e){
+            LOGGER.warn("[Analyste] Method : senariste_post_pogression - Error message : "+e.getMessage());
+            return null;
+        }
+    }
 }

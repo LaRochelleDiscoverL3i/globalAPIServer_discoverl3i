@@ -55,6 +55,8 @@ public class AgentsAPI {
     public Router path_post(Router router){
         router.post("/api/create_user").handler(AgentsHandler::agents_post_createUser);
         router.post("/api/reponse").handler(AgentsHandler::agents_post_reponse);
+        router.post("/api/curiosite").handler(AgentsHandler::agents_post_curiosite);
+        router.post("/api/progression").handler(AgentsHandler::agents_post_progression);
         return router;
     }
 

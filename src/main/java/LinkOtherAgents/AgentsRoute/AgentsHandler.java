@@ -148,11 +148,44 @@ public class AgentsHandler {
         }
     }
 
-    public static void agents_post_curiosite(RoutingContext routingContext) {
+    public static void agents_post_progression(RoutingContext routingContext) {
         try{
+            String idJoueur = routingContext.request().getParam("idjoueur");
+            String level = routingContext.request().getParam("level");
+
+            JsonObject scenariste_jo = new JsonObject();
+            scenariste_jo.put("idjoueur", idJoueur);
+            scenariste_jo.put("level", level);
+
+            JsonObject response = senariste.senariste_post_pogression(scenariste_jo);
+
+            routingContext.response()
+                    .setStatusCode(200)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(response));
 
         } catch (Exception e) {
-            LOGGER.warn("[AgentsHandler] Method : agents_post_curiositeagents_get_curiosite - Error message : " + e.getMessage());
+            LOGGER.warn("[AgentsHandler] Method : agents_post_progression - Error message : " + e.getMessage());
+        }
+    }
+
+    public static void agents_post_curiosite(RoutingContext routingContext) {
+        try{
+            String idJoueur = routingContext.request().getParam("idjoueur");
+            String level = routingContext.request().getParam("level");
+
+            JsonObject scenariste_jo = new JsonObject();
+            scenariste_jo.put("idjoueur", idJoueur);
+            scenariste_jo.put("level", level);
+
+            JsonObject response = senariste.senariste_post_curiosite(scenariste_jo);
+
+            routingContext.response()
+                    .setStatusCode(200)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(response));
+        } catch (Exception e) {
+            LOGGER.warn("[AgentsHandler] Method : agents_post_curiosite - Error message : " + e.getMessage());
         }
     }
 
