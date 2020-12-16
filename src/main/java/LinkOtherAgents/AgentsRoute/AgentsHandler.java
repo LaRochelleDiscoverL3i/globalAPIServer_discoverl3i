@@ -51,6 +51,14 @@ public class AgentsHandler {
     private static PhoneGap phoneGap = new PhoneGap();
     private static Observeur observeur = new Observeur();
 
+    /**
+     * Method   : agents_get_curiosite
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Handler, Retourne la réponse à la requête GET curiosite
+     *
+     * @param routingContext
+     */
     public static void agents_get_curiosite(RoutingContext routingContext) {
         try {
 
@@ -68,6 +76,14 @@ public class AgentsHandler {
         }
     }
 
+    /**
+     * Method   : agents_get_progession
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Handler, Retourne la réponse à la requête GET progression
+     *
+     * @param routingContext
+     */
     public static void agents_get_progession(RoutingContext routingContext) {
         try {
 
@@ -85,6 +101,14 @@ public class AgentsHandler {
         }
     }
 
+    /**
+     * Method   : agents_get_questionToAsk
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Handler, Retourne une question en fonction du joueur
+     *
+     * @param routingContext
+     */
     public static void agents_get_questionToAsk(RoutingContext routingContext) {
         try {
             String joueurId = routingContext.request().getParam("joueur");
@@ -148,6 +172,14 @@ public class AgentsHandler {
         }
     }
 
+    /**
+     * Method   : agents_post_progression
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Handler, POST une progression, transfert au senariste
+     *
+     * @param routingContext
+     */
     public static void agents_post_progression(RoutingContext routingContext) {
         try{
             String idJoueur = routingContext.request().getParam("idjoueur");
@@ -169,6 +201,14 @@ public class AgentsHandler {
         }
     }
 
+    /**
+     * Method   : agents_post_curiosite
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Handler, POST une curiosite, transfert au senariste
+     *
+     * @param routingContext
+     */
     public static void agents_post_curiosite(RoutingContext routingContext) {
         try{
             String idJoueur = routingContext.request().getParam("idjoueur");
@@ -189,6 +229,14 @@ public class AgentsHandler {
         }
     }
 
+    /**
+     * Method   : agents_post_createUser
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Handler, POST la creation d'un nouveau joueur, transfert aux autres agents
+     *
+     * @param routingContext
+     */
     public static void agents_post_createUser(RoutingContext routingContext) {
         try {
             String joueurId = routingContext.request().getParam("joueur");
@@ -244,6 +292,14 @@ public class AgentsHandler {
         }
     }
 
+    /**
+     * Method   : agents_post_reponse
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Handler, POST la reponse, transfert à l'observeur
+     *
+     * @param routingContext
+     */
     public static void agents_post_reponse(RoutingContext routingContext) {
         try {
             String joueur = routingContext.request().getParam("joueur");

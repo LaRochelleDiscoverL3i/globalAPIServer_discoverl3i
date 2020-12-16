@@ -5,18 +5,37 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.client.WebClient;
-
 import java.io.FileInputStream;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * Class    : Senariste
+ * Author   : Justin Métayer
+ * Version  : 1.0.0
+ *
+ * Def      : Classe for agent Senariste
+ */
 public class Senariste {
     /**
      * Constantes
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(Senariste.class);
+
+    /**
+     * Variables
+     */
     private static Properties agents_config = new Properties();
 
+    /**
+     * Method   : senariste_post_addjoueur
+     * Params   : content(JsonObject)
+     * Return   : JsonObject
+     * Def      : Methode pour envoyer le nouveau joueur à l'agent sénariste
+     *
+     * @param content
+     * @return
+     */
     public static JsonObject senariste_post_addjoueur(JsonObject content){
         try{
             FileInputStream fis = new FileInputStream("src/main/java/config/server_config.properties");
@@ -54,6 +73,15 @@ public class Senariste {
         }
     }
 
+    /**
+     * Method   : senariste_post_curiosite
+     * Params   : content(JsonObject)
+     * Return   : JsonObject
+     * Def      : Methode pour envoyer la curiosite à l'agent sénariste
+     *
+     * @param content
+     * @return
+     */
     public static JsonObject senariste_post_curiosite(JsonObject content){
         try{
             FileInputStream fis = new FileInputStream("src/main/java/config/server_config.properties");
@@ -90,6 +118,15 @@ public class Senariste {
         }
     }
 
+    /**
+     * Method   : senariste_post_pogression
+     * Params   : content(JsonObject)
+     * Return   : JsonObject
+     * Def      : Methode pour envoyer la progression à l'agent sénariste
+     *
+     * @param content
+     * @return
+     */
     public static JsonObject senariste_post_pogression(JsonObject content){
         try{
             FileInputStream fis = new FileInputStream("src/main/java/config/server_config.properties");

@@ -5,18 +5,38 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.client.WebClient;
-
 import java.io.FileInputStream;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * Class    : PhoneGap
+ * Author   : Justin Métayer
+ * Version  : 1.0.0
+ *
+ * Def      : Classe for agent PhoneGap
+ */
 public class PhoneGap {
     /**
      * Constantes
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(PhoneGap.class);
+
+    /**
+     * Variables
+     */
     private static Properties agents_config = new Properties();
 
+    /**
+     * Method   : phonegab_post_question
+     * Params   : content(JsonObject), joueurId(String)
+     * Return   : JsonObject
+     * Def      : Methode pour envoyer la question à PhoneGap
+     *
+     * @param content
+     * @param joueurId
+     * @return
+     */
     public static JsonObject phonegab_post_question (JsonObject content, String joueurId){
         try{
             FileInputStream fis = new FileInputStream("src/main/java/config/server_config.properties");
