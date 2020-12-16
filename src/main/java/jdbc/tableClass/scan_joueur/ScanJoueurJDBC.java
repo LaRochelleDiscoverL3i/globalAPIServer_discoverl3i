@@ -1,9 +1,6 @@
 package jdbc.tableClass.scan_joueur;
 
 import jdbc.PostgresJDBC;
-import jdbc.tableClass.joueur.Joueur;
-import jdbc.tableClass.reponse.Reponse;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class    : ScanJoueurJDBC
+ * Author   : Justin Métayer
+ * Version  : 1.0.0
+ *
+ * Def      : Classes contenant les méthodes pour requêter la BDD sur la table ScanJoueur
+ */
 public class ScanJoueurJDBC {
     /**
      * Variable

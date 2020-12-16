@@ -9,7 +9,7 @@ import java.sql.*;
  * Author   : Justin Métayer
  * Version  : 1.0.0
  *
- * Def      : Classe pour l'object Joueur
+ * Def      : Classe permettant la liaison en une ligne d'une table Joueur de la BDD et le Java
  */
 public class Joueur  implements TableInterface {
     /**

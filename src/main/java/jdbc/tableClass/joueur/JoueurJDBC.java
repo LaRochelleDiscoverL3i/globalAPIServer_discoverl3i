@@ -1,17 +1,16 @@
 package jdbc.tableClass.joueur;
 
 import jdbc.PostgresJDBC;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class    : JoueurJDBC {
+ * Class    : JoueurJDBC
  * Author   : Justin Métayer
  * Version  : 1.0.0
  *
- * Def      : Classe JDBC pour l'objet Joueur
+ * Def      : Classes contenant les méthodes pour requêter la BDD sur la table Joueur
  */
 public class JoueurJDBC {
     /**

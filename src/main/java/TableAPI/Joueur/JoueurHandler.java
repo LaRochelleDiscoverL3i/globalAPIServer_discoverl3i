@@ -17,7 +17,7 @@ import java.util.List;
  * Author   : Justin Métayer
  * Version  : 1.0.0
  *
- * Def      : Classe gestion des retours des requêtes REST
+ * Def      : Classe gestion des retours des requêtes REST d'un Joueur
  */
 public class JoueurHandler {
     /**

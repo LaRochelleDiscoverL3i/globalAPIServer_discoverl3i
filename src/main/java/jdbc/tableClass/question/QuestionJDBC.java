@@ -1,18 +1,16 @@
 package jdbc.tableClass.question;
 
 import jdbc.PostgresJDBC;
-import jdbc.tableClass.joueur.Joueur;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class    : QuestionJDBC {
+ * Class    : QuestionJDBC
  * Author   : Justin Métayer
  * Version  : 1.0.0
  *
- * Def      : Classe JDBC pour l'objet Question
+ * Def      : Classes contenant les méthodes pour requêter la BDD sur la table Question
  */
 public class QuestionJDBC {
     /**

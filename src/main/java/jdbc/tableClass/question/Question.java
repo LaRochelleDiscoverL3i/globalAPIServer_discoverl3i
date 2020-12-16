@@ -1,8 +1,6 @@
 package jdbc.tableClass.question;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type;
 import jdbc.tableClass.Interfaces.TableInterface;
-
 import java.sql.*;
 
 /**
@@ -10,7 +8,7 @@ import java.sql.*;
  * Author   : Justin Métayer
  * Version  : 1.0.0
  *
- * Def      : Classe pour l'object Question
+ * Def      : Classe permettant la liaison en une ligne d'une table Question de la BDD et le Java
  */
 public class Question implements TableInterface {
     /**

@@ -4,7 +4,6 @@ import LinkOtherAgents.Analyste.Analyste;
 import LinkOtherAgents.Observeur.Observeur;
 import LinkOtherAgents.PhoneGap.PhoneGap;
 import LinkOtherAgents.Senariste.Senariste;
-import TableAPI.Scan_Joueur.ScanJoueurHandler;
 import TableToJson.Joueur.JoueurToJson;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
@@ -17,10 +16,15 @@ import jdbc.tableClass.question.Question;
 import jdbc.tableClass.question.QuestionJDBC;
 import jdbc.tableClass.reponse.Reponse;
 import jdbc.tableClass.reponse.ReponseJDBC;
-import jdbc.tableClass.scan_joueur.ScanJoueurJDBC;
-
 import java.util.List;
 
+/**
+ * Class    : AgentsHandler
+ * Author   : Justin Métayer
+ * Version  : 1.0.0
+ *
+ * Def      : Classe pour la gestion des réponses de l'API REST des Agents
+ */
 public class AgentsHandler {
     /**
      * Constantes
@@ -28,12 +32,20 @@ public class AgentsHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(AgentsHandler.class);
 
     /**
-     * Variables
+     * Variables JDBC
      */
     private static JoueurJDBC joueurJDBC = new JoueurJDBC();
     private static QuestionJDBC questionJDBC = new QuestionJDBC();
     private static ReponseJDBC reponseJDBC = new ReponseJDBC();
+
+    /**
+     * Variables converter JSON
+     */
     private static JoueurToJson jtj = new JoueurToJson();
+
+    /**
+     * Variables Agents
+     */
     private static Analyste analyste = new Analyste();
     private static Senariste senariste = new Senariste();
     private static PhoneGap phoneGap = new PhoneGap();
@@ -122,7 +134,7 @@ public class AgentsHandler {
                     //Check si Amina desire vraiment juste le nom joueur
                     JsonObject analyste_jo = new JsonObject();
                     analyste_jo.put("idjoueur", joueur.getIdjoueur());
-                    analyste.anayliste_post_creation(analyste_jo);
+                    analyste.analyste_post_creation(analyste_jo);
                     LOGGER.info("[AgentsHandler] Method : agents_post_createUser - send creation to analyste");
                 } catch (Exception e) {
                     LOGGER.warn("[AgentsHandler] Method : agents_post_createUser - During send to analyste - Error message : " + e.getMessage());

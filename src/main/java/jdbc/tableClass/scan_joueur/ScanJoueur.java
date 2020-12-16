@@ -6,6 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Class    : ScanJoueur
+ * Author   : Justin Métayer
+ * Version  : 1.0.0
+ *
+ * Def      : Classe permettant la liaison en une ligne d'une table ScanJoueur de la BDD et le Java
+ */
 public class ScanJoueur implements TableInterface {
     /**
      * Variables

@@ -1,7 +1,6 @@
 package TableToJson.Scan_Joueur;
 
 import TableToJson.Interfaces.ToJsonInterface;
-import TableToJson.Question.QuestionToJson;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
@@ -14,9 +13,12 @@ import java.util.List;
  * Author   : Justin Métayer
  * Version  : 1.0.0
  *
- * Def      : Classe pour faire la conversion en JSON
+ * Def      : Classe pour faire la conversion en JSON de ScanJoueur
  */
 public class ScanJoueurToJson implements ToJsonInterface {
+    /**
+     * Constantes
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(ScanJoueurToJson.class);
 
     /**
@@ -50,7 +52,7 @@ public class ScanJoueurToJson implements ToJsonInterface {
      * Method   : arrayToJson
      * Params   : obj_list(List<Object>)
      * Return   : JsonArray
-     * Def      : Function permettant la conversion d'une liste de ScanJoueur en List JSON
+     * Def      : Function permettant la conversion d'une liste de ScanJoueur en tableau JSON
      */
     @Override
     public JsonArray arrayToJson(List<Object> obj_list) throws Exception {

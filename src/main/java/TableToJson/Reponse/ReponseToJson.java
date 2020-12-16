@@ -1,7 +1,6 @@
 package TableToJson.Reponse;
 
 import TableToJson.Interfaces.ToJsonInterface;
-import TableToJson.Joueur.JoueurToJson;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
@@ -13,9 +12,12 @@ import java.util.List;
  * Author   : Justin Métayer
  * Version  : 1.0.0
  *
- * Def      : Classe pour faire la conversion en JSON
+ * Def      : Classe pour faire la conversion en JSON d'une Reponse
  */
 public class ReponseToJson implements ToJsonInterface {
+    /**
+     * Constantes
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(ReponseToJson.class);
 
     /**
@@ -34,7 +36,8 @@ public class ReponseToJson implements ToJsonInterface {
             result.put("idreponse", reponse.getIdreponse());
             if(reponse.getDescription_reponse() == null){
                 result.putNull("description_reponse");
-            }else {
+            }
+            else {
                 result.put("description_reponse", reponse.getDescription_reponse());
             }
             result.put("idquestion", reponse.getIdquestion());
@@ -52,7 +55,7 @@ public class ReponseToJson implements ToJsonInterface {
      * Method   : arrayToJson
      * Params   : obj_list(List<Object>)
      * Return   : JsonArray
-     * Def      : Function permettant la conversion d'une liste de Reponse en List JSON
+     * Def      : Function permettant la conversion d'une liste de Reponse en tableau JSON
      */
     @Override
     public JsonArray arrayToJson(List<Object> obj_list) throws Exception {

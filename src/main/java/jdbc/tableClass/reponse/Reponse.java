@@ -1,9 +1,15 @@
 package jdbc.tableClass.reponse;
 
 import jdbc.tableClass.Interfaces.TableInterface;
-
 import java.sql.*;
 
+/**
+ * Class    : Reponse
+ * Author   : Justin Métayer
+ * Version  : 1.0.0
+ *
+ * Def      : Classe permettant la liaison en une ligne d'une table Reponse de la BDD et le Java
+ */
 public class Reponse implements TableInterface {
     /**
      * Variables

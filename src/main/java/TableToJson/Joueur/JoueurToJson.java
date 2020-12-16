@@ -13,7 +13,7 @@ import java.util.List;
  * Author   : Justin Métayer
  * Version  : 1.0.0
  *
- * Def      : Classe pour faire la conversion en JSON
+ * Def      : Classe pour faire la conversion en JSON d'un Joueur
  */
 public class JoueurToJson implements ToJsonInterface {
     private static final Logger LOGGER = LoggerFactory.getLogger(JoueurToJson.class);
@@ -61,7 +61,7 @@ public class JoueurToJson implements ToJsonInterface {
      * Method   : arrayToJson
      * Params   : obj_list(List<Object>)
      * Return   : JsonArray
-     * Def      : Function permettant la conversion d'une liste de Joueur en List JSON
+     * Def      : Function permettant la conversion d'une liste de Joueur en tableau JSON
      */
     @Override
     public JsonArray arrayToJson(List<Object> obj_list) throws Exception {

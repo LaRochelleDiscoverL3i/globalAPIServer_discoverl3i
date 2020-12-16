@@ -6,7 +6,6 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.RoutingContext;
-import jdbc.tableClass.joueur.Joueur;
 import jdbc.tableClass.scan_joueur.ScanJoueur;
 import jdbc.tableClass.scan_joueur.ScanJoueurJDBC;
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ import java.util.List;
  * Author   : Justin Métayer
  * Version  : 1.0.0
  *
- * Def      : Classe gestion des retours des requêtes REST
+ * Def      : Classe gestion des retours des requêtes REST pour les ScanJoueur
  */
 public class ScanJoueurHandler {
     /**

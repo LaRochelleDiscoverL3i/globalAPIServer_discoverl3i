@@ -6,7 +6,6 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.RoutingContext;
-import jdbc.tableClass.joueur.Joueur;
 import jdbc.tableClass.reponse.Reponse;
 import jdbc.tableClass.reponse.ReponseJDBC;
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ import java.util.List;
  * Author   : Justin Métayer
  * Version  : 1.0.0
  *
- * Def      : Classe gestion des retours des requêtes REST
+ * Def      : Classe gestion des retours des requêtes REST de Reponse
  */
 public class ReponseHandler {
     /**
