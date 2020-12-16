@@ -1,17 +1,16 @@
 package jdbc.tableClass.question;
 
 import jdbc.PostgresJDBC;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class    : QuestionJDBC {
+ * Class    : QuestionJDBC
  * Author   : Justin Métayer
  * Version  : 1.0.0
  *
- * Def      : Classe JDBC pour l'objet Question
+ * Def      : Classes contenant les méthodes pour requêter la BDD sur la table Question
  */
 public class QuestionJDBC {
     /**
@@ -78,6 +77,115 @@ public class QuestionJDBC {
 
         stm.close();
         return questions;
+    }
+
+    /**
+     * Method   : getQuestionById
+     * Params   : idquestion(int)
+     * Return   : Question
+     *
+     * Def      : Method qui permet de retourner une question par son id dans la BDD
+     *
+     * @return
+     * @throws SQLException
+     */
+    public Question getQuestionById(int idquestion) throws SQLException {
+        if(con == null) this.connectionBDD();
+        Statement stm = con.createStatement();
+
+        String query = "SELECT * FROM question WHERE idquestion = "+idquestion+"";
+
+        ResultSet rs = stm.executeQuery(query);
+
+        Question result = null;
+
+        while(rs.next()) {
+            result = new Question(
+                    rs.getInt("idquestion"),
+                    rs.getString("indice"),
+                    rs.getInt("positionreponse"),
+                    rs.getString("description_question"),
+                    rs.getInt("level_game"),
+                    Question.Categorie_question.valueOf(rs.getString("categorie_question")),
+                    rs.getInt("idreponse")
+            );
+        }
+
+        stm.close();
+        return result;
+    }
+
+    /**
+     * Method   : getQuestionByDescriptionQuestion
+     * Params   : description_question(String)
+     * Return   : Question
+     *
+     * Def      : Method qui permet de retourner une question par sa description_question dans la BDD
+     *
+     * @return
+     * @throws SQLException
+     */
+    public Question getQuestionByDescriptionQuestion(String description_question) throws SQLException {
+        if(con == null) this.connectionBDD();
+        Statement stm = con.createStatement();
+
+        String query = "SELECT * FROM question WHERE description_question = "+description_question+" LIMIT 1";
+
+        ResultSet rs = stm.executeQuery(query);
+
+        Question result = null;
+
+        while(rs.next()) {
+            result = new Question(
+                    rs.getInt("idquestion"),
+                    rs.getString("indice"),
+                    rs.getInt("positionreponse"),
+                    rs.getString("description_question"),
+                    rs.getInt("level_game"),
+                    Question.Categorie_question.valueOf(rs.getString("categorie_question")),
+                    rs.getInt("idreponse")
+            );
+        }
+
+        stm.close();
+        return result;
+    }
+
+    /**
+     * Method   : getQuestionByLevel
+     * Params   : level_game(Integer)
+     * Return   : Question
+     *
+     * Def      : Method qui permet de retourner une liste de question par rapport au level
+     *
+     * @return
+     * @throws SQLException
+     */
+    public List<Question> getQuestionByLevel(Integer level_game) throws SQLException {
+        if(con == null) this.connectionBDD();
+        Statement stm = con.createStatement();
+
+        String query = "SELECT * FROM question WHERE level_game = "+level_game;
+
+        ResultSet rs = stm.executeQuery(query);
+        List<Question> resultQuestionList = new ArrayList<>();
+
+        while(rs.next()) {
+            Question question = new Question(
+                    rs.getInt("idquestion"),
+                    rs.getString("indice"),
+                    rs.getInt("positionreponse"),
+                    rs.getString("description_question"),
+                    rs.getInt("level_game"),
+                    Question.Categorie_question.valueOf(rs.getString("categorie_question")),
+                    rs.getInt("idreponse")
+            );
+
+            resultQuestionList.add(question);
+        }
+
+        stm.close();
+        return resultQuestionList;
     }
 
     /**

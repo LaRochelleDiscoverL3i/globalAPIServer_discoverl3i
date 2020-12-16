@@ -16,7 +16,7 @@ import java.util.List;
  * Author   : Justin Métayer
  * Version  : 1.0.0
  *
- * Def      : Classe gestion des retours des requêtes REST
+ * Def      : Classe gestion des retours des requêtes REST d'une Question
  */
 public class QuestionHandler {
     /**
@@ -62,6 +62,27 @@ public class QuestionHandler {
     }
 
     /**
+     * Method   : getItemById
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête GET by ID
+     *
+     * @param routingContext
+     */
+    public static void getItemById(RoutingContext routingContext) {
+        try {
+            Question question = questionJDBC.getQuestionById(Integer.valueOf(routingContext.request().getParam("idquestion")));
+
+            routingContext.response()
+                    .setStatusCode(200)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(qtj.toJson(question)));
+        }catch (Exception e){
+            LOGGER.warn("[JoueurHandler] Exception error - getAllItems : "+e.getMessage());
+        }
+    }
+
+    /**
      * Method   : addItem
      * Params   : routingContext(RoutingContext)
      * Return   : None
@@ -73,11 +94,11 @@ public class QuestionHandler {
         try {
             Question question = new Question(
                     Integer.parseInt(routingContext.request().getParam("idquestion")),
-                    routingContext.request().getParam("indice"),
-                    Integer.parseInt(routingContext.request().getParam("positionreponse")),
-                    routingContext.request().getParam("description_question"),
-                    Integer.parseInt(routingContext.request().getParam("level_game")),
-                    Question.Categorie_question.valueOf(routingContext.request().getParam("categorie_question")),
+                    !routingContext.request().params().contains("indice") ? null : routingContext.request().getParam("indice"),
+                    !routingContext.request().params().contains("positionreponse") ? null : Integer.parseInt(routingContext.request().getParam("positionreponse")),
+                    !routingContext.request().params().contains("description_question") ? null : routingContext.request().getParam("description_question"),
+                    !routingContext.request().params().contains("level_game") ? null : Integer.parseInt(routingContext.request().getParam("level_game")),
+                    !routingContext.request().params().contains("categorie_question") ? null : Question.Categorie_question.valueOf(routingContext.request().getParam("categorie_question")),
                     Integer.parseInt(routingContext.request().getParam("idreponse"))
             );
 
@@ -177,12 +198,12 @@ public class QuestionHandler {
         try {
             Question question = new Question(
                     Integer.parseInt(routingContext.request().getParam("idquestion")),
-                    routingContext.request().getParam("indice").isEmpty() ? null : routingContext.request().getParam("indice"),
-                    routingContext.request().getParam("positionreponse").isEmpty() ? null : Integer.parseInt(routingContext.request().getParam("positionreponse")),
-                    routingContext.request().getParam("description_question").isEmpty() ? null : routingContext.request().getParam("description_question"),
-                    routingContext.request().getParam("level_game").isEmpty() ? null : Integer.parseInt(routingContext.request().getParam("level_game")),
-                    routingContext.request().getParam("categorie_question").isEmpty() ? null : Question.Categorie_question.valueOf(routingContext.request().getParam("categorie_question")),
-                    routingContext.request().getParam("idreponse").isEmpty() ? null : Integer.parseInt(routingContext.request().getParam("idreponse"))
+                    !routingContext.request().params().contains("indice") ? null : routingContext.request().getParam("indice"),
+                    !routingContext.request().params().contains("positionreponse") ? null : Integer.parseInt(routingContext.request().getParam("positionreponse")),
+                    !routingContext.request().params().contains("description_question") ? null : routingContext.request().getParam("description_question"),
+                    !routingContext.request().params().contains("level_game") ? null : Integer.parseInt(routingContext.request().getParam("level_game")),
+                    !routingContext.request().params().contains("categorie_question") ? null : Question.Categorie_question.valueOf(routingContext.request().getParam("categorie_question")),
+                    !routingContext.request().params().contains("idreponse") ? null : Integer.parseInt(routingContext.request().getParam("idreponse"))
             );
 
             Boolean result = questionJDBC.deleteQuestion(question);

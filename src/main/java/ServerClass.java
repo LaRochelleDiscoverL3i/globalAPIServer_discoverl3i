@@ -1,3 +1,4 @@
+import LinkOtherAgents.AgentsRoute.AgentsAPI;
 import TableAPI.Joueur.JoueurAPI;
 import TableAPI.Question.QuestionAPI;
 import TableAPI.Question_Joueur.QuestionJoueurAPI;
@@ -45,6 +46,7 @@ public class ServerClass extends AbstractVerticle {
         FileInputStream fis = new FileInputStream("src/main/java/config/server_config.properties");
         server_config.load(fis);
 
+        //Select port
         int port_load = server_config.getProperty("port") == null ? 0 : Integer.parseInt(server_config.getProperty("port"));
 
         LOGGER.info("[ServerClass] Start server !");
@@ -62,6 +64,11 @@ public class ServerClass extends AbstractVerticle {
         router = questionJoueurAPI.getAllRoutes(router);
         router = reponseAPI.getAllRoutes(router);
         router = scanJoueurAPI.getAllRoutes(router);
+
+        //Define route Agents
+        AgentsAPI agentsAPI = new AgentsAPI();
+
+        router = agentsAPI.getAllRoutes(router);
 
         //Start server
         vertx.createHttpServer()

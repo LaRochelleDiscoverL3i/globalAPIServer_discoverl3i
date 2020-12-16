@@ -2,34 +2,31 @@ package jdbc.tableClass.question_joueur;
 
 import jdbc.tableClass.Interfaces.TableInterface;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * Class    : QuestionJoueur
  * Author   : Justin Métayer
  * Version  : 1.0.0
  *
- * Def      : Classe pour l'object Question_Joueur
+ * Def      : Classe permettant la liaison en une ligne d'une table QuestionJoueur de la BDD et le Java
  */
 public class QuestionJoueur implements TableInterface {
     /**
      * Variables
      */
-    private int idquestion;
-    private int idjoueur;
-    private int nbre_tentative;
+    private Integer idquestion;
+    private String idjoueur;
+    private Integer nbre_tentative;
     private Boolean booleen;
 
     /**
      * Method   : QuestionJoueur
-     * Params   : idquestion(Int), idjoueur(Int), nbre_tentative(Int), boolean(Boolean)
+     * Params   : idquestion(Int), idjoueur(String), nbre_tentative(Int), boolean(Boolean)
      * Return   : None
      * Def      : Init method
      */
-    public QuestionJoueur(int idquestion, int idjoueur, int nbre_tentative, Boolean booleen){
+    public QuestionJoueur(Integer idquestion, String idjoueur, Integer nbre_tentative, Boolean booleen){
         this.idquestion = idquestion;
         this.idjoueur = idjoueur;
         this.nbre_tentative = nbre_tentative;
@@ -55,7 +52,7 @@ public class QuestionJoueur implements TableInterface {
         PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
         pst.setInt(1, this.idquestion);
-        pst.setInt(2, this.idjoueur);
+        pst.setString(2, this.idjoueur);
         pst.setInt(3, this.nbre_tentative);
         pst.setBoolean(4, this.booleen);
 
@@ -82,10 +79,18 @@ public class QuestionJoueur implements TableInterface {
 
         PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
-        pst.setInt(1, this.nbre_tentative);
-        pst.setBoolean(2, this.booleen);
+        if (this.nbre_tentative == null){
+            pst.setNull(1, Types.INTEGER);
+        }else {
+            pst.setInt(1, this.nbre_tentative);
+        }
+        if (this.booleen == null){
+            pst.setNull(2, Types.BOOLEAN);
+        }else{
+            pst.setBoolean(2, this.booleen);
+        }
         pst.setInt(3, this.idquestion);
-        pst.setInt(4, this.idjoueur);
+        pst.setString(4, this.idjoueur);
 
         int rowAffected = pst.executeUpdate();
 
@@ -110,7 +115,7 @@ public class QuestionJoueur implements TableInterface {
         PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
         pst.setInt(1, this.idquestion);
-        pst.setInt(2, this.idjoueur);
+        pst.setString(2, this.idjoueur);
 
         int rowAffected = pst.executeUpdate();
 
@@ -124,39 +129,39 @@ public class QuestionJoueur implements TableInterface {
     /**
      * Method   : getIdquestion
      * Params   : None
-     * Return   : int
+     * Return   : Integer
      *
      * Def      : Getter > idquestion
      *
      * @return
      */
-    public int getIdquestion() {
+    public Integer getIdquestion() {
         return idquestion;
     }
 
     /**
      * Method   : getIdjoueur
      * Params   : None
-     * Return   : int
+     * Return   : String
      *
      * Def      : Getter > idjoueur
      *
      * @return
      */
-    public int getIdjoueur() {
+    public String getIdjoueur() {
         return idjoueur;
     }
 
     /**
      * Method   : getNbre_tentative
      * Params   : None
-     * Return   : int
+     * Return   : Integer
      *
      * Def      : Getter > nbre_tentative
      *
      * @return
      */
-    public int getNbre_tentative() {
+    public Integer getNbre_tentative() {
         return nbre_tentative;
     }
 
@@ -182,7 +187,7 @@ public class QuestionJoueur implements TableInterface {
      *
      * @param nbre_tentative
      */
-    public void setNbre_tentative(int nbre_tentative) {
+    public void setNbre_tentative(Integer nbre_tentative) {
         this.nbre_tentative = nbre_tentative;
     }
 

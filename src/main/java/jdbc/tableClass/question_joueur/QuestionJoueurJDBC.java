@@ -1,8 +1,6 @@
 package jdbc.tableClass.question_joueur;
 
 import jdbc.PostgresJDBC;
-import jdbc.tableClass.question.Question;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class    : QuestionJoueurJDBC
+ * Author   : Justin Métayer
+ * Version  : 1.0.0
+ *
+ * Def      : Classes contenant les méthodes pour requêter la BDD sur la table QuestionJoueur
+ */
 public class QuestionJoueurJDBC {
     /**
      * Variable
@@ -62,7 +67,7 @@ public class QuestionJoueurJDBC {
 
             QuestionJoueur questionjoueur = new QuestionJoueur(
                     rs.getInt("idquestion"),
-                    rs.getInt("idjoueur"),
+                    rs.getString("idjoueur"),
                     rs.getInt("nbre_tentative"),
                     rs.getBoolean("booleen")
             );
@@ -72,6 +77,40 @@ public class QuestionJoueurJDBC {
 
         stm.close();
         return questionsjoueurs;
+    }
+
+    /**
+     * Method   : getQuestionJoueurById
+     * Params   : idjoueur(String), idquestion(int)
+     * Return   : QuestionJoueur
+     *
+     * Def      : Method qui permet de retourner une questionJoueur par son id dans la BDD
+     *
+     * @return
+     * @throws SQLException
+     */
+    public QuestionJoueur getQuestionJoueurById(String idjoueur, int idquestion) throws SQLException {
+        if(con == null) this.connectionBDD();
+        Statement stm = con.createStatement();
+
+        String query = "SELECT * FROM joueur WHERE idjoueur = '"+idjoueur+"' AND idquestion = "+idquestion;
+        System.out.println(query);
+
+        ResultSet rs = stm.executeQuery(query);
+
+        QuestionJoueur result = null;
+
+        while(rs.next()){
+            result  = new QuestionJoueur(
+                    rs.getInt("idquestion"),
+                    rs.getString("idjoueur"),
+                    rs.getInt("nbre_tentative"),
+                    rs.getBoolean("booleen")
+            );
+        }
+
+        stm.close();
+        return result;
     }
 
     /**

@@ -16,7 +16,7 @@ import java.util.List;
  * Author   : Justin Métayer
  * Version  : 1.0.0
  *
- * Def      : Classe gestion des retours des requêtes REST
+ * Def      : Classe gestion des retours des requêtes REST de Reponse
  */
 public class ReponseHandler {
     /**
@@ -62,6 +62,27 @@ public class ReponseHandler {
     }
 
     /**
+     * Method   : getItemById
+     * Params   : routingContext(RoutingContext)
+     * Return   : None
+     * Def      : Methode pour le retour de la requête GET by ID
+     *
+     * @param routingContext
+     */
+    public static void getItemById(RoutingContext routingContext) {
+        try {
+            Reponse joueur = reponseJDBC.getReponseById(Integer.valueOf(routingContext.request().getParam("idreponse")));
+
+            routingContext.response()
+                    .setStatusCode(200)
+                    .putHeader("content-type", "application/json")
+                    .end(Json.encodePrettily(rtj.toJson(joueur)));
+        }catch (Exception e){
+            LOGGER.warn("[JoueurHandler] Exception error - getAllItems : "+e.getMessage());
+        }
+    }
+
+    /**
      * Method   : addItem
      * Params   : routingContext(RoutingContext)
      * Return   : None
@@ -73,7 +94,7 @@ public class ReponseHandler {
         try {
             Reponse reponse = new Reponse(
                     Integer.parseInt(routingContext.request().getParam("idreponse")),
-                    routingContext.request().getParam("description_reponse"),
+                    !routingContext.request().params().contains("description_reponse") ? null : routingContext.request().getParam("description_reponse"),
                     Integer.parseInt(routingContext.request().getParam("idquestion"))
             );
 
@@ -169,8 +190,8 @@ public class ReponseHandler {
         try {
             Reponse reponse = new Reponse(
                     Integer.parseInt(routingContext.request().getParam("idreponse")),
-                    routingContext.request().getParam("description_reponse").isEmpty() ? null : routingContext.request().getParam("description_reponse"),
-                    routingContext.request().getParam("idquestion").isEmpty() ? null : Integer.parseInt(routingContext.request().getParam("idquestion"))
+                    !routingContext.request().params().contains("description_reponse") ? null : routingContext.request().getParam("description_reponse"),
+                    Integer.parseInt(routingContext.request().getParam("idquestion"))
             );
 
             Boolean result = reponseJDBC.deleteReponse(reponse);

@@ -12,6 +12,27 @@ import java.util.List;
  * Def      : Interface permettant de donner les fonctions de bases pour la conversion en JSON
  */
 public interface ToJsonInterface {
+    /**
+     * Method   : toJson
+     * Params   : obj(Object)
+     * Return   : JsonObject
+     * Def      : Function permettant la conversion d'un objet en JSON
+     *
+     * @param obj
+     * @return
+     * @throws Exception
+     */
     public JsonObject toJson(Object obj) throws Exception;
+
+    /**
+     * Method   : toJson
+     * Params   : obj(Object)
+     * Return   : JsonObject
+     * Def      : Function permettant la conversion d'une liste objet en tableau JSON
+     *
+     * @param obj_list
+     * @return
+     * @throws Exception
+     */
     public JsonArray arrayToJson(List<Object> obj_list) throws Exception;
 }

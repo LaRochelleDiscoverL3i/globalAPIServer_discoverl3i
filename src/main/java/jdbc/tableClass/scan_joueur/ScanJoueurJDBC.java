@@ -1,8 +1,6 @@
 package jdbc.tableClass.scan_joueur;
 
 import jdbc.PostgresJDBC;
-import jdbc.tableClass.reponse.Reponse;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class    : ScanJoueurJDBC
+ * Author   : Justin Métayer
+ * Version  : 1.0.0
+ *
+ * Def      : Classes contenant les méthodes pour requêter la BDD sur la table ScanJoueur
+ */
 public class ScanJoueurJDBC {
     /**
      * Variable
@@ -54,14 +59,14 @@ public class ScanJoueurJDBC {
         if(con == null) this.connectionBDD();
         Statement stm = con.createStatement();
 
-        ResultSet rs = stm.executeQuery("SELECT * FROM question_joueur");
+        ResultSet rs = stm.executeQuery("SELECT * FROM scan_joueur");
 
         List<ScanJoueur> scanjoueurs = new ArrayList<>();
 
         while(rs.next()){
 
             ScanJoueur scanjoueur = new ScanJoueur(
-                    rs.getInt("idjoueur"),
+                    rs.getString("idjoueur"),
                     rs.getInt("idreponse"),
                     rs.getInt("idquestion"),
                     rs.getBoolean("booleen_question")
@@ -72,6 +77,40 @@ public class ScanJoueurJDBC {
 
         stm.close();
         return scanjoueurs;
+    }
+
+    /**
+     * Method   : getScanJoueurById
+     * Params   : idjoueur(String)
+     * Return   : Joueur
+     *
+     * Def      : Method qui permet de retourner un joueur par son id dans la BDD
+     *
+     * @return
+     * @throws SQLException
+     */
+    public ScanJoueur getScanJoueurById(String idjoueur, int idreponse, int idquestion) throws SQLException {
+        if(con == null) this.connectionBDD();
+        Statement stm = con.createStatement();
+
+        String query = "SELECT * FROM scan_joueur WHERE idjoueur = '"+idjoueur+"' AND idreponse = "+idreponse+" AND "+idquestion;
+        System.out.println(query);
+
+        ResultSet rs = stm.executeQuery(query);
+
+        ScanJoueur result = null;
+
+        while(rs.next()){
+            result = new ScanJoueur(
+                    rs.getString("idjoueur"),
+                    rs.getInt("idreponse"),
+                    rs.getInt("idquestion"),
+                    rs.getBoolean("booleen_question")
+            );
+        }
+
+        stm.close();
+        return result;
     }
 
     /**

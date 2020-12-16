@@ -45,6 +45,7 @@ public class JoueurAPI {
      */
     private Router addGetRoutes(Router router) {
         router.get("/joueurs").handler(JoueurHandler::getAllItems);
+        router.get("/joueur/:idjoueur").handler(JoueurHandler::getItemById);
         return router;
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
  * Author   : Justin Métayer
  * Version  : 1.0.0
  *
- * Def      : Classe pour faire la conversion en JSON
+ * Def      : Classe pour faire la conversion en JSON d'un Joueur
  */
 public class JoueurToJson implements ToJsonInterface {
     private static final Logger LOGGER = LoggerFactory.getLogger(JoueurToJson.class);
@@ -32,9 +32,21 @@ public class JoueurToJson implements ToJsonInterface {
             Joueur joueur = (Joueur) obj;
 
             result.put("idjoueur", joueur.getIdjoueur());
-            result.put("score", joueur.getScore());
-            result.put("temps_test", joueur.getTemps_test().toString());
-            result.put("level_game", joueur.getLevel_game());
+            if(joueur.getScore() == null){
+                result.putNull("score");
+            }else{
+                result.put("score", joueur.getScore());
+            }
+            if(joueur.getTemps_test() == null){
+                result.putNull("temps_test");
+            }else {
+                result.put("temps_test", joueur.getTemps_test().toString());
+            }
+            if(joueur.getLevel_game() == null){
+                result.putNull("level_game");
+            }else {
+                result.put("level_game", joueur.getLevel_game());
+            }
 
             LOGGER.info("[JoueurToJson] Conversion Joueur to Json Object - IdJoueur : "+joueur.getIdjoueur());
         }
@@ -49,7 +61,7 @@ public class JoueurToJson implements ToJsonInterface {
      * Method   : arrayToJson
      * Params   : obj_list(List<Object>)
      * Return   : JsonArray
-     * Def      : Function permettant la conversion d'une liste de Joueur en List JSON
+     * Def      : Function permettant la conversion d'une liste de Joueur en tableau JSON
      */
     @Override
     public JsonArray arrayToJson(List<Object> obj_list) throws Exception {

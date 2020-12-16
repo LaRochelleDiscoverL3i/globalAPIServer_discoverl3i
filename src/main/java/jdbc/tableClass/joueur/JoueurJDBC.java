@@ -1,17 +1,16 @@
 package jdbc.tableClass.joueur;
 
 import jdbc.PostgresJDBC;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class    : JoueurJDBC {
+ * Class    : JoueurJDBC
  * Author   : Justin Métayer
  * Version  : 1.0.0
  *
- * Def      : Classe JDBC pour l'objet Joueur
+ * Def      : Classes contenant les méthodes pour requêter la BDD sur la table Joueur
  */
 public class JoueurJDBC {
     /**
@@ -63,7 +62,7 @@ public class JoueurJDBC {
 
         while(rs.next()){
             Joueur jo = new Joueur(
-                    rs.getInt("idjoueur"), rs.getInt("score"), rs.getTimestamp("temps_test"), rs.getInt("level_game")
+                    rs.getString("idjoueur"), rs.getInt("score"), rs.getTimestamp("temps_test"), rs.getInt("level_game")
             );
 
             joueurs.add(jo);
@@ -71,6 +70,37 @@ public class JoueurJDBC {
 
         stm.close();
         return joueurs;
+    }
+
+    /**
+     * Method   : getJoueurById
+     * Params   : idjoueur(String)
+     * Return   : Joueur
+     *
+     * Def      : Method qui permet de retourner un joueur par son id dans la BDD
+     *
+     * @return
+     * @throws SQLException
+     */
+    public Joueur getJoueurById(String idjoueur) throws SQLException {
+        if(con == null) this.connectionBDD();
+        Statement stm = con.createStatement();
+
+        String query = "SELECT * FROM joueur WHERE idjoueur = '"+idjoueur+"'";
+        System.out.println(query);
+
+        ResultSet rs = stm.executeQuery(query);
+
+        Joueur result = null;
+
+        while(rs.next()){
+            result = new Joueur(
+                    rs.getString("idjoueur"), rs.getInt("score"), rs.getTimestamp("temps_test"), rs.getInt("level_game")
+            );
+        }
+
+        stm.close();
+        return result;
     }
 
     /**

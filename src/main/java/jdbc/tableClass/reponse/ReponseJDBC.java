@@ -1,8 +1,6 @@
 package jdbc.tableClass.reponse;
 
 import jdbc.PostgresJDBC;
-import jdbc.tableClass.question_joueur.QuestionJoueur;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class    : ReponseJDBC
+ * Author   : Justin Métayer
+ * Version  : 1.0.0
+ *
+ * Def      : Classes contenant les méthodes pour requêter la BDD sur la table Reponse
+ */
 public class ReponseJDBC {
     /**
      * Variable
@@ -54,7 +59,7 @@ public class ReponseJDBC {
         if(con == null) this.connectionBDD();
         Statement stm = con.createStatement();
 
-        ResultSet rs = stm.executeQuery("SELECT * FROM question_joueur");
+        ResultSet rs = stm.executeQuery("SELECT * FROM reponse");
 
         List<Reponse> reponses = new ArrayList<>();
 
@@ -71,6 +76,72 @@ public class ReponseJDBC {
 
         stm.close();
         return reponses;
+    }
+
+    /**
+     * Method   : getReponseById
+     * Params   : idjoueur(String)
+     * Return   : Joueur
+     *
+     * Def      : Method qui permet de retourner un joueur par son id dans la BDD
+     *
+     * @return
+     * @throws SQLException
+     */
+    public Reponse getReponseById(int idreponse) throws SQLException {
+        if(con == null) this.connectionBDD();
+        Statement stm = con.createStatement();
+
+        String query = "SELECT * FROM reponse WHERE idreponse = "+idreponse+"";
+        System.out.println(query);
+
+        ResultSet rs = stm.executeQuery(query);
+
+        Reponse result = null;
+
+        while(rs.next()){
+            result =  new Reponse(
+                    rs.getInt("idreponse"),
+                    rs.getString("description_reponse"),
+                    rs.getInt("idquestion")
+            );
+        }
+
+        stm.close();
+        return result;
+    }
+
+    /**
+     * Method   : getReponseByIdQuestion
+     * Params   : idquestion(Integer)
+     * Return   : Joueur
+     *
+     * Def      : Method qui permet de retourner une reponse par son idquestion dans la BDD
+     *
+     * @return
+     * @throws SQLException
+     */
+    public Reponse getReponseByIdQuestion(Integer idquestion) throws SQLException {
+        if(con == null) this.connectionBDD();
+        Statement stm = con.createStatement();
+
+        String query = "SELECT * FROM reponse WHERE idquestion = "+idquestion+"";
+        System.out.println(query);
+
+        ResultSet rs = stm.executeQuery(query);
+
+        Reponse result = null;
+
+        while(rs.next()){
+            result =  new Reponse(
+                    rs.getInt("idreponse"),
+                    rs.getString("description_reponse"),
+                    rs.getInt("idquestion")
+            );
+        }
+
+        stm.close();
+        return result;
     }
 
     /**

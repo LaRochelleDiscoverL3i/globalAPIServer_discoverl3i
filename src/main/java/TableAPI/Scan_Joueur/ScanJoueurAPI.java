@@ -45,6 +45,7 @@ public class ScanJoueurAPI {
      */
     private Router addGetRoutes(Router router) {
         router.get("/scansjoueur").handler(ScanJoueurHandler::getAllItems);
+        router.get("/scanjoueur/:idjoueur/:idreponse/:idquestion").handler(ScanJoueurHandler::getItemById);
         return router;
     }
 

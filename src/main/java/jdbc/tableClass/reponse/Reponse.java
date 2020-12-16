@@ -1,19 +1,22 @@
 package jdbc.tableClass.reponse;
 
 import jdbc.tableClass.Interfaces.TableInterface;
+import java.sql.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
-
+/**
+ * Class    : Reponse
+ * Author   : Justin Métayer
+ * Version  : 1.0.0
+ *
+ * Def      : Classe permettant la liaison en une ligne d'une table Reponse de la BDD et le Java
+ */
 public class Reponse implements TableInterface {
     /**
      * Variables
      */
-    private int idreponse;
+    private Integer idreponse;
     private String description_reponse;
-    private int idquestion;
+    private Integer idquestion;
 
     /**
      * Method   : Reponse
@@ -21,7 +24,7 @@ public class Reponse implements TableInterface {
      * Return   : None
      * Def      : Init method
      */
-    public Reponse(int idreponse, String description_reponse, int idquestion){
+    public Reponse(Integer idreponse, String description_reponse, Integer idquestion){
         this.idreponse = idreponse;
         this.description_reponse = description_reponse;
         this.idquestion = idquestion;
@@ -71,7 +74,11 @@ public class Reponse implements TableInterface {
         query += " WHERE idreponse = ? AND idquestion = ? ";
 
         PreparedStatement pst = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-        pst.setString(1, this.description_reponse);
+        if(this.description_reponse == null){
+            pst.setNull(1, Types.VARCHAR);
+        }else {
+            pst.setString(1, this.description_reponse);
+        }
         pst.setInt(2, this.idreponse);
         pst.setInt(3, this.idquestion);
 
@@ -118,7 +125,7 @@ public class Reponse implements TableInterface {
      *
      * @return
      */
-    public int getIdreponse() {
+    public Integer getIdreponse() {
         return idreponse;
     }
 
@@ -144,7 +151,7 @@ public class Reponse implements TableInterface {
      *
      * @return
      */
-    public int getIdquestion() {
+    public Integer getIdquestion() {
         return idquestion;
     }
 

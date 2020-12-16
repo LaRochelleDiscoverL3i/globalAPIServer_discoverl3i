@@ -45,6 +45,7 @@ public class ReponseAPI {
      */
     private Router addGetRoutes(Router router) {
         router.get("/reponses").handler(ReponseHandler::getAllItems);
+        router.get("/reponse/:idreponse").handler(ReponseHandler::getItemById);
         return router;
     }
 
