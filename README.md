@@ -139,11 +139,11 @@ private Boolean booleen_question;
 ```
 
 ### Agents Routes
-| URL                        | Type | Content | Action                                                                                                                                 |
-|----------------------------|------|---------|----------------------------------------------------------------------------------------------------------------------------------------|
-| /api/curiosite/:idjoueur   | GET  | None    | Performs a GET query on the observing agent and returns curiosity in response                                                          |
-| /api/progression/:idjoueur | GET  | None    | Performs a GET query on the observing agent and returns progession in response                                                         |
-| /api/questionToAsk/:joueur | GET  | None    | Allows to retrieve a question and send it to the phonegap client                                                                       |
-|                            |      |         |                                                                                                                                        |
-| /api/create_user           | POST |         | Phonegap request for creating a new player based on his name. If the creation is possible we send the information to the other agents. |
-| /api/reponse               | POST |         | Gateway to the observing agent to send him a response                                                                                  |
+| URL                        | Type | Content                                                                                         | Action                                                                                                                                 |
+|----------------------------|------|-------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| /api/curiosite/:idjoueur   | GET  | None                                                                                            | Performs a GET query on the observing agent and returns curiosity in response                                                          |
+| /api/progression/:idjoueur | GET  | None                                                                                            | Performs a GET query on the observing agent and returns progession in response                                                         |
+| /api/questionToAsk/:joueur | GET  | None                                                                                            | Allows to retrieve a question and send it to the phonegap client                                                                       |
+|                            |      |                                                                                                 |                                                                                                                                        |
+| /api/create_user           | POST | ``` { "joueur" : "idjoueur" } ```                                                           | Phonegap request for creating a new player based on his name. If the creation is possible we send the information to the other agents. |
+| /api/reponse               | POST | ``` { "joueur" : "idjoueur", "reponse" : "text reponse", "question" : "text question" } ``` | Gateway to the observing agent to send him a response                                                                                  |
