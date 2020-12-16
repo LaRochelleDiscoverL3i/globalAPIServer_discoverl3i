@@ -55,7 +55,7 @@ Each package has a specific role :
 | Joueur          | /joueurs                                     | GET  | Return all joueurs           | JsonArray |
 | Joueur          | /joueur/:idjoueur                            | GET  | Return Joueur by ID          | Json      |
 | Joueur          | /joueur                                      | POST | Add new Joueur               | Json      |
-| Joueur          | /joueurs                                     | PUT  | Update Joueur                | Json      |
+| Joueur          | /joueur                                      | PUT  | Update Joueur                | Json      |
 | Joueur          | /joueur                                      | DEL  | Delete Joueur                | Json      |
 |                 |                                              |      |                              |           |
 | Question        | /questions                                   | GET  | Return all questions         | JsonArray |
