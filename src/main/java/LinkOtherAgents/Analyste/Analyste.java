@@ -5,7 +5,6 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.client.WebClient;
-
 import java.io.FileInputStream;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicReference;

@@ -17,7 +17,6 @@ import jdbc.tableClass.question.Question;
 import jdbc.tableClass.question.QuestionJDBC;
 import jdbc.tableClass.reponse.Reponse;
 import jdbc.tableClass.reponse.ReponseJDBC;
-import jdbc.tableClass.scan_joueur.ScanJoueur;
 import jdbc.tableClass.scan_joueur.ScanJoueurJDBC;
 
 import java.util.List;
@@ -34,67 +33,11 @@ public class AgentsHandler {
     private static JoueurJDBC joueurJDBC = new JoueurJDBC();
     private static QuestionJDBC questionJDBC = new QuestionJDBC();
     private static ReponseJDBC reponseJDBC = new ReponseJDBC();
-    private static ScanJoueurJDBC scanJoueurJDBC = new ScanJoueurJDBC();
     private static JoueurToJson jtj = new JoueurToJson();
     private static Analyste analyste = new Analyste();
     private static Senariste senariste = new Senariste();
     private static PhoneGap phoneGap = new PhoneGap();
     private static Observeur observeur = new Observeur();
-
-    public static void agents_post_createUser(RoutingContext routingContext) {
-        try {
-            String joueurId = routingContext.request().getParam("joueur");
-
-
-            if (joueurJDBC.getJoueurById(joueurId) == null) {
-                Joueur joueur = new Joueur(
-                        joueurId,
-                        null,
-                        null,
-                        null
-                );
-
-                joueurJDBC.insertJoueur(joueur);
-
-                try {
-                    //Check si Amina desire vraiment juste le nom joueur
-                    JsonObject analyste_jo = new JsonObject();
-                    analyste_jo.put("idjoueur", joueur.getIdjoueur());
-                    analyste.anayliste_post_creation(analyste_jo);
-                    LOGGER.info("[AgentsHandler] Method : agents_post_createUser - send creation to analyste");
-                } catch (Exception e) {
-                    LOGGER.warn("[AgentsHandler] Method : agents_post_createUser - During send to analyste - Error message : " + e.getMessage());
-                }
-
-                try {
-                    //Check si Didi desire vraiment juste le nom joueur
-                    JsonObject analyste_jo = new JsonObject();
-                    analyste_jo.put("joueur", joueur.getIdjoueur());
-                    senariste.senariste_post_addjoueur(jtj.toJson(joueur));
-                    LOGGER.info("[AgentsHandler] Method : agents_post_createUser - send creation to senariste");
-                } catch (Exception e) {
-                    LOGGER.warn("[AgentsHandler] Method : agents_post_createUser - During send to senariste - Error message : " + e.getMessage());
-                }
-
-                routingContext.response()
-                        .setStatusCode(200)
-                        .putHeader("content-type", "application/json")
-                        .end(Json.encodePrettily(jtj.toJson(joueur)));
-            } else {
-                JsonObject response = new JsonObject();
-                response.put("Error", "Pseudo already exist !");
-
-                routingContext.response()
-                        .setStatusCode(409)
-                        .putHeader("content-type", "application/json")
-                        .end(Json.encodePrettily(response));
-            }
-
-        } catch (Exception e) {
-            LOGGER.warn("[AgentsHandler] Method : agents_post_createUser - Error message : " + e.getMessage());
-
-        }
-    }
 
     public static void agents_get_questionToAsk(RoutingContext routingContext) {
         try {
@@ -160,6 +103,61 @@ public class AgentsHandler {
         }
     }
 
+    public static void agents_post_createUser(RoutingContext routingContext) {
+        try {
+            String joueurId = routingContext.request().getParam("joueur");
+
+
+            if (joueurJDBC.getJoueurById(joueurId) == null) {
+                Joueur joueur = new Joueur(
+                        joueurId,
+                        null,
+                        null,
+                        null
+                );
+
+                joueurJDBC.insertJoueur(joueur);
+
+                try {
+                    //Check si Amina desire vraiment juste le nom joueur
+                    JsonObject analyste_jo = new JsonObject();
+                    analyste_jo.put("idjoueur", joueur.getIdjoueur());
+                    analyste.anayliste_post_creation(analyste_jo);
+                    LOGGER.info("[AgentsHandler] Method : agents_post_createUser - send creation to analyste");
+                } catch (Exception e) {
+                    LOGGER.warn("[AgentsHandler] Method : agents_post_createUser - During send to analyste - Error message : " + e.getMessage());
+                }
+
+                try {
+                    //Check si Didi desire vraiment juste le nom joueur
+                    JsonObject analyste_jo = new JsonObject();
+                    analyste_jo.put("joueur", joueur.getIdjoueur());
+                    senariste.senariste_post_addjoueur(jtj.toJson(joueur));
+                    LOGGER.info("[AgentsHandler] Method : agents_post_createUser - send creation to senariste");
+                } catch (Exception e) {
+                    LOGGER.warn("[AgentsHandler] Method : agents_post_createUser - During send to senariste - Error message : " + e.getMessage());
+                }
+
+                routingContext.response()
+                        .setStatusCode(200)
+                        .putHeader("content-type", "application/json")
+                        .end(Json.encodePrettily(jtj.toJson(joueur)));
+            } else {
+                JsonObject response = new JsonObject();
+                response.put("Error", "Pseudo already exist !");
+
+                routingContext.response()
+                        .setStatusCode(409)
+                        .putHeader("content-type", "application/json")
+                        .end(Json.encodePrettily(response));
+            }
+
+        } catch (Exception e) {
+            LOGGER.warn("[AgentsHandler] Method : agents_post_createUser - Error message : " + e.getMessage());
+
+        }
+    }
+
     public static void agents_post_reponse(RoutingContext routingContext) {
         try {
             String joueur = routingContext.request().getParam("joueur");
@@ -171,7 +169,8 @@ public class AgentsHandler {
             if(questionItem != null){
                 Reponse reponseItem = reponseJDBC.getReponseByIdQuestion(questionItem.getIdquestion());
 
-                /*ScanJoueur scanJoueur = new ScanJoueur(
+                /*
+                ScanJoueur scanJoueur = new ScanJoueur(
                         joueur,
                         reponseItem.getIdreponse(),
                         questionItem.getIdquestion(),
@@ -211,7 +210,6 @@ public class AgentsHandler {
 
         } catch (Exception e) {
             LOGGER.warn("[AgentsHandler] Method : agents_post_reponse - Error message : " + e.getMessage());
-
         }
     }
 }

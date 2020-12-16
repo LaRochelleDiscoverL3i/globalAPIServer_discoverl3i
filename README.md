@@ -84,67 +84,55 @@ Each package has a specific role :
 ## Table Objects
 ### Joueurs
 ```java
-    /**
-     * Variables
-     */
-    private String idjoueur;//Id de l'objet joueur
-    private int score;
-    private Timestamp temps_test;
-    private int level_game;
+private String idjoueur;//Id de l'objet joueur
+private Integer score;
+private Timestamp temps_test;
+private Integer level_game;
 ```
 
 ### Questions
 ```java
-    /**
-     * Enum
-     */
-    public enum Categorie_question {
-        collaboration,
-        auteur,
-        projet,
-        creation
-    }
+/**
+ * Enum
+ */
+public enum Categorie_question {
+    collaboration,
+    auteur,
+    projet,
+    creation
+}
 
-    /**
-     * Variables
-     */
-    private int idquestion;//Id de l'objet question
-    private String indice;
-    private int positionreponse;
-    private String description_question;
-    private int level_game;
-    private Categorie_question categorie_question;
-    private int idreponse;
+/**
+ * Variables
+ */
+private Integer idquestion;//Id de l'objet question
+private String indice;
+private Integer positionreponse;
+private String description_question;
+private Integer level_game;
+private Categorie_question categorie_question;
+private Integer idreponse;
 ```
 
 ### Questions Joueurs
 ```java
-    /**
-     * Variables
-     */
-    private int idquestion;
-    private String idjoueur;
-    private int nbre_tentative;
-    private Boolean booleen;
+private Integer idquestion;
+private String idjoueur;
+private Integer nbre_tentative;
+private Boolean booleen;
 ```
 
 ### Reponses
 ```java
-    /**
-     * Variables
-     */
-    private int idreponse;
-    private String description_reponse;
-    private int idquestion;
+private Integer idreponse;
+private String description_reponse;
+private Integer idquestion;
 ```
 
 ### Scans Joueurs
 ```java
-    /**
- * Variables
- */
 private String idjoueur;
-private int idreponse;
-private int idquestion;
+private Integer idreponse;
+private Integer idquestion;
 private Boolean booleen_question;
 ```
