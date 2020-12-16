@@ -108,6 +108,39 @@ public class ReponseJDBC {
     }
 
     /**
+     * Method   : getReponseByIdQuestion
+     * Params   : idquestion(Integer)
+     * Return   : Joueur
+     *
+     * Def      : Method qui permet de retourner une reponse par son idquestion dans la BDD
+     *
+     * @return
+     * @throws SQLException
+     */
+    public Reponse getReponseByIdQuestion(Integer idquestion) throws SQLException {
+        if(con == null) this.connectionBDD();
+        Statement stm = con.createStatement();
+
+        String query = "SELECT * FROM reponse WHERE idquestion = "+idquestion+"";
+        System.out.println(query);
+
+        ResultSet rs = stm.executeQuery(query);
+
+        Reponse result = null;
+
+        while(rs.next()){
+            result =  new Reponse(
+                    rs.getInt("idreponse"),
+                    rs.getString("description_reponse"),
+                    rs.getInt("idquestion")
+            );
+        }
+
+        stm.close();
+        return result;
+    }
+
+    /**
      * Method   : insertReponse
      * Params   : reponse(Reponse)
      * Return   : Boolean

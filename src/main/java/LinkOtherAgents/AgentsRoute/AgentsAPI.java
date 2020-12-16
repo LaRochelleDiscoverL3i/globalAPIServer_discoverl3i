@@ -1,9 +1,8 @@
 package LinkOtherAgents.AgentsRoute;
 
-import LinkOtherAgents.Interfaces.AgentsAPIInterface;
 import io.vertx.ext.web.Router;
 
-public class AgentsAPI implements AgentsAPIInterface {
+public class AgentsAPI {
 
     /**
      * Method   : getAllRoutes
@@ -14,7 +13,6 @@ public class AgentsAPI implements AgentsAPIInterface {
      * @param router
      * @return
      */
-    @Override
     public Router getAllRoutes(Router router) {
         router = this.path_get(router);
         router = this.path_post(router);
@@ -38,8 +36,8 @@ public class AgentsAPI implements AgentsAPIInterface {
      * @param router
      * @return
      */
-    @Override
     public Router path_get(Router router){
+        router.get("/api/questionToAsk/:joueur").handler(AgentsHandler::agents_get_questionToAsk);
         return router;
     }
 
@@ -52,9 +50,9 @@ public class AgentsAPI implements AgentsAPIInterface {
      * @param router
      * @return
      */
-    @Override
     public Router path_post(Router router){
         router.post("/api/create_user").handler(AgentsHandler::agents_post_createUser);
+        router.post("/api/reponse").handler(AgentsHandler::agents_post_reponse);
         return router;
     }
 
@@ -67,7 +65,6 @@ public class AgentsAPI implements AgentsAPIInterface {
      * @param router
      * @return
      */
-    @Override
     public Router path_put(Router router){
         return router;
     }
@@ -81,7 +78,6 @@ public class AgentsAPI implements AgentsAPIInterface {
      * @param router
      * @return
      */
-    @Override
     public Router path_del(Router router){
         return router;
     }
